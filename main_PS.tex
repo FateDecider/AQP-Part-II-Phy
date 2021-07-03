@@ -1,0 +1,1284 @@
+\documentclass[a4paper]{article}
+\usepackage{pgf,tikz,pgfplots}
+\usetikzlibrary{arrows,decorations.markings}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows}
+%% Language and font encodings
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{float}
+%% Sets page size and margins
+\usepackage[a4paper,top=3cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+%% Useful packages
+
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\usepackage{eqnarray}
+\usepackage{float}
+\usepackage{esint}
+\usepackage{wrapfig}
+\usepackage{gensymb}
+\usepackage{lipsum}
+\usepackage{amssymb}
+\usepackage{array}
+\usepackage{tikz}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{mathtools}
+\DeclareMathOperator{\Proj}{Proj}
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\cosec}{cosec}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\nullity}{nullity}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\DeclareMathOperator{\Res}{Res}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\R}{R}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\Log}{Log}
+\DeclareMathOperator{\sech}{sech}
+\DeclareMathOperator{\Var}{Var}
+\renewcommand\vec[1]{\overrightarrow{#1}}
+\newcommand\cev[1]{\overleftarrow{#1}}
+\definecolor{darkblue}{RGB}{	0, 0, 139}
+\newtheoremstyle{new2}% <name>
+{2pt}% <Space above>
+{2pt}% <Space below>
+{\color{black}}% Body font
+{}% <Indent amount>
+{\bfseries\color{black}}% Theorem head font
+{:}% <Punctuation after theorem head>
+{.5em}% <Space after theorem headi>
+{}% <Theorem head spec (can be left empty, meaning `normal')>
+\theoremstyle{new2}
+\newtheorem{ans}{Answer}[section]
+\newtheoremstyle{new}% <name>
+{2pt}% <Space above>
+{2pt}% <Space below>
+{\color{darkblue}}% Body font
+{}% <Indent amount>
+{\bfseries\color{black}}% Theorem head font
+{:}% <Punctuation after theorem head>
+{.5em}% <Space after theorem headi>
+{}% <Theorem head spec (can be left empty, meaning `normal')>
+\theoremstyle{new}
+\newtheorem{qns}{Problem}[section]
+\setlength{\parindent}{0cm}
+\title{\textbf{Part II AQP Problem Sheet Solutions}}
+\author{Tai Yingzhe, Tommy (ytt26)}
+\date{}
+\setlength{\parindent}{0cm}
+\begin{document}
+\maketitle
+\tableofcontents
+\subsection*{Acknowledgements:}
+Many thanks to my demonstrator Antonios M. Alvertis, and the lecturer Stafford Withington for their guidance.
+\newpage
+\section{Problem Sheet 1}
+\subsection*{Revision}
+\begin{qns}[Operator methods and measurement]
+The Hamiltonian $\hat{H}$ has two normalized eigenstates $|\psi_1\rangle$ and $|\psi_2\rangle$, corresponding to different eigenvalues $E_1$ and $E_2$.
+\begin{enumerate}[label=(\alph*)]
+\item Show that $|\psi_1\rangle$ and $|\psi_2\rangle$ are orthogonal.
+\item An observable $\hat{A}$ has the properties $\hat{A}|\psi_1\rangle = |\psi_2\rangle$ and $\hat{A}|\psi_2\rangle = |\psi_1\rangle$i; calculate its eigenvalues and eigenvectors (as combinations of $|\psi_1\rangle$ and $|\psi_2\rangle$).
+\item At time $t = 0$, a measurement of $\hat{A}$ results in the measured value $−1$ . Find the state of the system $|\psi(t)\rangle$ at times $t > 0$, and show that the probability that a measurement of $\hat{A}$ again gives the value $−1$ is given by $P(t) = \cos^2\frac{(E_1-E_2)t}{2\hbar}$.
+\end{enumerate}
+\end{qns}
+\begin{ans}\leavevmode
+\begin{enumerate}[label=(\alph*)]
+\item We have $\hat{H}|\psi_1\rangle=E_1|\psi_1\rangle$, $\hat{H}|\psi_2\rangle=E_2|\psi_2\rangle$ with $E_1\neq E_2$.
+$$0=\langle\psi_1|\hat{H}|\psi_2\rangle-\langle\psi_2|\hat{H}|\psi_1\rangle=E_2\langle\psi_1|\psi_2\rangle-E_1\langle\psi_2|\psi_1\rangle$$
+but $E_1\neq E_2$ and so $\langle\psi_1|\psi_2\rangle=0$, i.e. orthogonal.
+\item Take the sum and difference:
+$$\hat{A}(|\psi_1\rangle+|\psi_2\rangle)=|\psi_2\rangle+|\psi_1\rangle$$
+so $|\psi_1\rangle+|\psi_2\rangle$ is an eigenvector of $\hat{A}$ with eigenvalue $+1$.
+$$\hat{A}(|\psi_1\rangle-|\psi_2\rangle)=|\psi_2\rangle-|\psi_1\rangle=-(|\psi_1\rangle-|\psi_2\rangle)$$
+so $|\psi_1\rangle-|\psi_2\rangle$ is an eigenvector of $\hat{A}$ with eigenvalue $-1$.
+\item Since the measured eigenvalue at $t=0$ is $-1$, then the initial eigenstate is
+$$|\psi(0)\rangle=\frac{1}{\sqrt{2}}(|\psi_1\rangle-|\psi_2\rangle)$$
+Since $|\psi_1\rangle$, $|\psi_2\rangle$ are eigenstates of the time-dependent Schr\"{o}dinger's equation, we insert time dependence into their respective phases:
+$$|\psi(t)\rangle=\frac{1}{\sqrt{2}}(|\psi_1\rangle e^{-iE_1t/\hbar}-|\psi_2\rangle e^{-iE_2t/\hbar})$$
+The probability that we obtained $|\psi(0)\rangle$ again at time $t$ is
+$$P(t)=|\langle\psi(0)|\psi(t)\rangle|^2=\frac{1}{2}\bigg(1+\cos\frac{E_1-E_2}{\hbar}t\bigg)=\cos^2\frac{E_1-E_2}{2\hbar}t$$
+\end{enumerate}
+\end{ans}
+\begin{qns}[Probability flux]
+Consider the state $\psi(x) = Ae^{ikx} +Be^{−ikx}$. Show that the probability flux is $j = (|A|^2-|B|^2)\frac{\hbar k}{m}$. (The cross terms vanish, so we can associate the two parts of $j$ with the corresponding parts of $\psi$.)
+\end{qns}
+\begin{ans}
+The probability flux is
+$$J=\frac{\hbar}{2mi}\bigg(\psi^*\frac{\partial\psi}{\partial x}-\psi\frac{\partial\psi^*}{\partial x}\bigg)$$
+where
+$$\frac{\partial\psi}{\partial x}=ik(Ae^{ikx}-Be^{-ikx}),\quad\frac{\partial\psi^*}{\partial x}=ik(-Ae^{-ikx}+Be^{ikx})$$
+The probability flux is then
+$$J=\frac{\hbar}{2mi}ik2(|A|^2-|B|^2)=\frac{\hbar k}{m}(|A|^2-|B|^2)$$
+\end{ans}
+\newpage
+\begin{qns}[Ladder operators]
+The potential energy of a one-dimensional harmonic oscillator of mass $m$ and angular frequency $\omega$ is given by $V (\hat{x}) =\frac{1}{2} m\omega^2\hat{x}^2$. Using the raising and lowering operators
+$$\hat{a}^\dag =\frac{1}{\sqrt{2m\hbar\omega}}(-i\hat{p}+m\omega\hat{x}),\quad\hat{a}=\frac{1}{\sqrt{2m\hbar\omega}}(i\hat{p}+m\omega\hat{x})$$
+show that:
+\begin{enumerate}[label=(\alph*)]
+\item  The expectation values of the position and momentum are zero for an energy eigenstate $|\psi_n\rangle$.
+\item The expectation values of the potential and kinetic energies are each equal to $(n+0.5)(\hbar\omega/2)$ where $n$ is the quantum number of the state $|\psi_n\rangle$.
+\item The uncertainties $\Delta x$ and $\Delta p$ in position and momentum are related by 
+$$\Delta x\Delta p=(n+0.5)\hbar$$
+\end{enumerate}
+[The ladder operators have the properties $\hat{a}^\dag|\psi_n\rangle=\sqrt{n+1}|\psi_{n+1}\rangle$ and $\hat{a}|\psi_n\rangle=\sqrt{n}|\psi_{n-1}\rangle$.]
+\end{qns}
+\begin{ans}\leavevmode
+\begin{enumerate}[label=(\alph*)]
+\item Write the position and momentum operators as:
+$$\hat{x}=\sqrt{\frac{\hbar}{2m\omega}}(\hat{a}+\hat{a}^\dag),\quad\hat{p}=-i\sqrt{\frac{\hbar m\omega}{2}}(\hat{a}-\hat{a}^\dag)$$
+But $\langle\psi_m|\psi_n\rangle=0$ for $m\neq n$, so
+$$\langle\hat{a}\rangle=\langle\psi_n|\hat{a}|\psi_n\rangle=\sqrt{n}\langle\psi_n|\psi_{n-1}\rangle=0,\quad\langle\hat{a}^\dag\rangle=\sqrt{n+1}\langle\psi_n|\psi_{n+1}\rangle=0$$
+We can then deduce that $\langle\hat{x}\rangle=\langle\hat{p}\rangle=0$.
+\item Take the squared:
+$$\hat{x}^2=\frac{\hbar}{2m\omega}(\hat{a}^2+(\hat{a}^\dag)^2+\hat{a}\hat{a}^\dag+\hat{a}^\dag\hat{a})$$
+and its expectation is
+\begin{align}
+\langle\psi_n|\hat{x}^2|\psi_n\rangle&=\frac{\hbar}{2m\omega}(\sqrt{n}\sqrt{n-1}\langle\psi_n|\psi_{n-2}\rangle+\sqrt{n+1}\sqrt{n+2}\langle\psi_n|\psi_{n+2}\rangle+(n+1)\langle\psi_n|\psi_n\rangle+n\langle\psi_n|\psi_n\rangle)\nonumber\\&=\frac{\hbar}{m\omega}(n+0.5)\nonumber
+\end{align}
+Similarly, $\langle\hat{p}^2\rangle=(n+0.5)m\hbar\omega$. The potential and kinetic expectations are:
+$$\langle\hat{V}\rangle=\frac{1}{2}m\omega^2\langle\hat{x}^2\rangle=\frac{1}{2}\hbar\omega(n+0.5),\quad\langle\hat{K}\rangle=\frac{\langle\hat{p}^2\rangle}{2m}=\frac{1}{2}\hbar\omega(n+0.5)=\langle\hat{V}\rangle$$
+\item The uncertainties are
+$$\Delta x=\sqrt{\langle\hat{x}^2\rangle-\langle\hat{x}\rangle^2}=\sqrt{\frac{\hbar}{2m\omega}(2n+1)}$$
+$$\Delta p=\sqrt{\langle\hat{p}^2\rangle-\langle\hat{p}\rangle^2}=\sqrt{\frac{m\hbar\omega}{2}(2n+1)}$$
+Hence,
+$$\Delta x\Delta p=\hbar(n+0.5)$$
+\end{enumerate}
+\end{ans}
+\newpage
+\begin{qns}[Matrix methods]
+Show that for a system with orbital angular momentum $\ell = 1$, for the basis of states $|\phi_1\rangle = |Y_{11}\rangle$, $|\phi_2\rangle = |Y_{10}\rangle$, $|\phi_3\rangle = |Y_{1−1}\rangle$, the angular momentum operators may be represented by the matrices
+$$\hat{L}_x=\frac{\hbar}{\sqrt{2}}\begin{pmatrix}0&1&0\\1&0&1\\0&1&0\\\end{pmatrix},\quad\hat{L}_y=\frac{i\hbar}{\sqrt{2}}\begin{pmatrix}0&-1&0\\1&0&-1\\0&1&0\\\end{pmatrix},\quad\hat{L}_z=\hbar\begin{pmatrix}1&0&0\\0&0&0\\0&0&-1\\\end{pmatrix}$$
+A rotating body has the Hamiltonian
+$$\hat{H}=\frac{\hat{L}_x^2}{2I_x}+\frac{\hat{L}_y^2}{2I_y}+\frac{\hat{L}_z^2}{2I_z}$$
+Find the energy levels and corresponding eigenstates when $\ell=1$.
+\end{qns}
+\begin{ans}
+By definition, the states with $\ell=1$ are the eigenstates of $\hat{L}_z$ with eigenvalues $\{+\hbar,0,-\hbar\}$, so in this basis, the matrix representation of $\hat{L}_z$ is $\diag(1,0,-1)\hbar$. The ladder operators $\hat{L}_\pm$ act on the basis states as
+$$\hat{L}_\pm|\ell,m\rangle=\hbar\sqrt{\ell(\ell+1)-m(m\pm1)}|\ell,m\pm1\rangle$$
+The matrix representations of $\hat{L}_\pm$ are:
+$$\hat{L}_+=\hbar\begin{pmatrix}0&\sqrt{2}&0\\0&0&\sqrt{2}\\0&0&0\\\end{pmatrix},\quad\hat{L}_-=\hbar\begin{pmatrix}0&0&0\\\sqrt{2}&0&0\\0&\sqrt{2}&0\\\end{pmatrix}$$
+so we have
+$$\hat{L}_x=\frac{1}{2}(\hat{L}_++\hat{L}_-)=\frac{\hbar}{\sqrt{2}}\begin{pmatrix}0&1&0\\1&0&1\\0&1&0\\\end{pmatrix},\quad\hat{L}_y=\frac{1}{2i}(\hat{L}_+-\hat{L}_-)=\frac{i\hbar}{\sqrt{2}}\begin{pmatrix}0&-1&0\\1&0&-1\\0&1&0\\\end{pmatrix}$$
+The Hamiltonian is then
+$$\hat{H}=\frac{\hat{L}_x^2}{2I_x}+\frac{\hat{L}_y^2}{2I_y}+\frac{\hat{L}_z^2}{2I_z}=\frac{\hbar^2}{4}\begin{pmatrix}I_x^{-1}+I_y^{-1}+2I_z^{-1}&0&I_x^{-1}-I_y^{-1}\\0&2I_x^{-1}+2I_y^{-1}&0\\I_x^{-1}-I_y^{-1}&0&I_x^{-1}+I_y^{-1}+2I_z^{-1}\\\end{pmatrix}$$
+The eigenvectors are
+$$\begin{pmatrix}0\\1\\0\\\end{pmatrix},\quad\frac{1}{\sqrt{2}}\begin{pmatrix}1\\0\\1\\\end{pmatrix},\quad\frac{1}{\sqrt{2}}\begin{pmatrix}1\\0\\-1\\\end{pmatrix}$$
+which have eigenvalues
+$$\frac{\hbar^2}{2}(I_x^{-1}+I_y^{-1}),\quad\frac{\hbar^2}{2}(I_x^{-1}+I_z^{-1}),\quad\frac{\hbar^2}{2}(I_y^{-1}+I_z^{-1})$$
+\end{ans}
+\begin{qns}[Spin]
+In terms of the Pauli matrices $\boldsymbol{\sigma} = (\sigma_x, \sigma_y, \sigma_z)$, the operator corresponding to the component of spin along the axis $(\theta, \phi)$ in spherical polar coordinates for a spin-half particle is $(\hbar/2)\boldsymbol{\sigma}\cdot\mathbf{n}$, where $\mathbf{n}$ is the unit vector $\mathbf{n} = (\sin\theta \cos\phi,\sin\theta \sin\phi, \cos \theta)$. Show that the eigenvalues of spin in this direction are $\pm\hbar/2$ (as expected), and deduce the corresponding wavefunctions. Hence, infer the wavefunctions for particles whose spins are aligned along the $+x$, $−x$, $+y$ and $−y$ directions.
+\end{qns}
+\begin{ans}
+For a spin-1/2 particle, the spin matrix is
+$$\hat{S}(\theta,\phi)=\frac{\hbar}{2}\mathbf{n}\cdot\boldsymbol{\sigma}=\frac{\hbar}{2}\begin{pmatrix}\cos\theta&e^{-i\phi}\sin\theta\\e^{i\phi}\sin\theta&-\cos\theta\\\end{pmatrix}$$
+which has eigenvalues $\pm\frac{\hbar}{2}$ and eigenvectors $(\cos\theta/2,e^{i\phi}\sin\theta/2)$ and $(\sin\theta/2,-e^{i\phi}\cos\theta/2)$ respectively. The spin states in the $x$-direction are obtained by setting $\theta=\pi/2$, $\phi=0$:
+$$|\uparrow\rangle_x=\frac{1}{\sqrt{2}}\begin{pmatrix}1\\1\\\end{pmatrix}=\frac{1}{\sqrt{2}}(|\uparrow\rangle_z+|\downarrow\rangle_z)$$
+$$|\downarrow\rangle_x=\frac{1}{\sqrt{2}}\begin{pmatrix}1\\-1\\\end{pmatrix}=\frac{1}{\sqrt{2}}(|\uparrow\rangle_z-|\downarrow\rangle_z)$$
+The spin states in the $y$-direction are obtained by setting $\theta=\pi/2$, $\phi=\pi/2$:
+$$|\uparrow\rangle_y=\frac{1}{\sqrt{2}}\begin{pmatrix}1\\i\\\end{pmatrix}=\frac{1}{\sqrt{2}}(|\uparrow\rangle_z+i|\downarrow\rangle_z)$$
+$$|\downarrow\rangle_y=\frac{1}{\sqrt{2}}\begin{pmatrix}1\\-i\\\end{pmatrix}=\frac{1}{\sqrt{2}}(|\uparrow\rangle_z-i|\downarrow\rangle_z)$$
+\end{ans}
+\begin{qns}[Identical particles]
+Two non-interacting, indistinguishable particles of mass $m$ move in the one-dimensional potential $V(x)$ given by
+\begin{equation*}
+V(x) = \begin{cases}
+0 &0<x<L\\
+\infty &\text{otherwise}
+\end{cases}
+\end{equation*}
+Show that the energy of the system is of the form $E = (n_1^2+ n_2^2)\varepsilon$, where $n_1$ and $n_2$ are integers, and find an expression for $\varepsilon$.\\[5pt]
+Consider the state with $E = 5\varepsilon$ for each of the following three cases:
+\begin{enumerate}[label=(\alph*)]
+\item spin-zero particles;
+\item spin-1/2 particles in a spin-singlet state;
+\item spin-1/2 particles in a spin-triplet state.
+\end{enumerate}
+In each case, state the symmetries of the spin and spatial components of the two-particle wavefunction. Write down the spatial wavefunction $\psi(x_1, x_2)$, and sketch the probability density $|\psi(x_1, x_2)|^2$ in the $(x_1, x_2)$ plane.\\[5pt]
+Describe qualitatively how the energies of these states would change if the particles carried electric charge and hence interacted with each other
+\end{qns}
+\begin{ans}
+A single particle in the potential well has the unnormalized wavefunction $\psi_n(x)=\sin\frac{n\pi x}{L}$ and energy $E=\frac{\hbar^2\pi^2}{2mL^2}n^2$. The overall wavefunction for a system of two indistinguishable particles must be either symmetric or anti-symmetric under particle exchange (by spin-statistics theorem, bosons and fermions respectively). The wavefunction is then
+$$\psi(x_1,x_2)=\sin\frac{n_1\pi x_1}{L}\sin\frac{n_2\pi x_2}{L}\pm\sin\frac{n_2\pi x_1}{L}\sin\frac{n_1\pi x_2}{L}$$
+with energy $(n_1^2+n_2^2)\varepsilon$. If $E=5\varepsilon$, either $n_1=1$, $n_2=2$, or vice-versa.
+\begin{enumerate}[label=(\alph*)]
+\item Since the spin is zero, there is no spin wavefunction. Since they are bosons, the spatial wavefunction is symmetric.
+$$\psi_{\text{sym}}(x_1,x_2)=\sin\frac{\pi x_1}{L}\sin\frac{2\pi x_2}{L}+\sin\frac{2\pi x_1}{L}\sin\frac{\pi x_2}{L}=2\sin\frac{\pi x_1}{L}\sin\frac{\pi x_2}{L}\bigg(\cos\frac{\pi x_1}{L}+\cos\frac{\pi x_2}{L}\bigg)$$
+\item Since they are in the singlet state, the spin wavefunction is anti-symmetric. Since they are fermions, the overall wavefunction is anti-symmetric. The spatial wavefunction is then symmetric, i.e. $\psi_{\text{sym}}(x_1,x_2)$.
+\item Since they are in the triplet state, the spin wavefunction is symmetric. Since they are fermions, the overall wavefunction is anti-symmetric. The spatial wavefunction is then anti-symmetric.
+$$\psi_{\text{anti}}(x_1,x_2)=\sin\frac{\pi x_1}{L}\sin\frac{2\pi x_2}{L}-\sin\frac{2\pi x_1}{L}\sin\frac{\pi x_2}{L}=2\sin\frac{\pi x_1}{L}\sin\frac{\pi x_2}{L}\bigg(\cos\frac{\pi x_1}{L}-\cos\frac{\pi x_2}{L}\bigg)$$
+\end{enumerate}
+Maximum probability $|\psi_{\text{sym}}(x_1,x_2)|^2$ when $x_1=x_2$ for bosons. Zero probability $|\psi_{\text{anti}}(x_1,x_2)|^2$ when $x_1=x_2$ for fermions.\\[5pt]
+If the particles were charged, they would repel each other through the Coulomb interaction. In the spin-$1/2$ triplet case, the spatial wavefunction is anti-symmetric and so the particles are further apart and the triplet state would have lower energy.
+\end{ans}
+\begin{qns}[Heisenberg picture]
+In the Heisenberg picture, time dependent operators $\hat{A}(t)=e^{i\hat{H}t/\hbar}\hat{A}e^{-i\hat{H}t/\hbar}$ are introduced. For the one-dimensional harmonic oscillator of question 3, show that the ladder operators $\hat{a}(t)$ and $\hat{a}^\dag(t)$ in the Heisenberg representation satisfy
+$$\hat{a}(t)=e^{i\hat{H}t/\hbar}\hat{a}(0)e^{-i\hat{H}t/\hbar}=e^{-i\omega t}\hat{a}(0)$$
+$$\hat{a}^\dag(t)=e^{i\hat{H}t/\hbar}\hat{a}^\dag(0)e^{-i\hat{H}t/\hbar}=e^{i\omega t}\hat{a}^\dag(0)$$
+Use this result to demonstrate that the position operator in the Heisenberg representation obeys the equation of motion
+$$\frac{d\hat{x}(t)}{dt}=\frac{\hat{p}(t)}{m}$$
+Show that this last result holds also for the more general case $\hat{H} = \hat{p}^2/2m + V (\hat{x})$.
+\end{qns}
+\begin{ans}
+For a generic Heisenberg operator $\hat{A}(t)$, it is related to the corresponding Schr\"{o}dinger operator $\hat{A}$ via
+$$\hat{A}(t)=e^{i\hat{H}t/\hbar}\hat{A}e^{-i\hat{H}t/\hbar}$$
+The Heisenberg equation of motion is then
+$$\frac{d\hat{A}(t)}{dt}=\frac{i\hat{H}}{\hbar}e^{i\hat{H}t/\hbar}\hat{A}e^{-i\hat{H}t/\hbar}-e^{i\hat{H}t/\hbar}\hat{A}\frac{i\hat{H}}{\hbar}e^{-i\hat{H}t/\hbar}=\frac{i}{\hbar}e^{i\hat{H}t/\hbar}[\hat{H},\hat{A}]e^{-i\hat{H}t/\hbar}=\frac{i}{\hbar}[\hat{H},\hat{A}(t)]$$
+For the 1D harmonic oscillator, we have
+$$\frac{d\hat{a}(t)}{dt}=\frac{i}{\hbar}[\hat{H},\hat{a}(t)]=\frac{i}{\hbar}(-\hbar\omega)\hat{a}(t)=-i\omega\hat{a}(t)\implies\hat{a}(t)=e^{-i\omega t}\hat{a}(0)$$
+Take the Hermitian conjugate: $\hat{a}^\dag(t)=e^{i\omega t}\hat{a}^\dag(0)$. The Schr\"{o}dinger operator for
+$$\frac{d\hat{x}}{dt}=\sqrt{\frac{\hbar}{2m\omega}}(-i\omega\hat{a}+i\omega\hat{a}^\dag)=\sqrt{\frac{\hbar\omega}{2m}}(-i)(\hat{a}-\hat{a}^\dag)=\frac{\hat{p}}{m}$$
+The Heisenberg equation of motion will then be
+$$\frac{d\hat{x}(t)}{dt}=\frac{i}{\hbar}[\hat{H},\hat{x}(t)]=\frac{i}{2m\hbar}(-2i\hbar\hat{p}(t))=\frac{\hat{p}(t)}{m}$$
+The result is still valid for $\hat{H}=\hat{p}^2/2m+V(\hat{x})$ since $[V(\hat{x}),\hat{x}(t)]=0$ $\forall t$.
+\end{ans}
+\newpage
+\section{Problem Sheet 2}
+\subsection*{Time Dependent Hamiltonians}
+\begin{qns}[Time shift operator]
+If $\hat{U}(t,t_0)$ is the time shift operator of a quantum system having a time-independent Hamiltonian, verify the following:
+\begin{enumerate}
+    \item Identity: $\hat{U}(t,t)=\hat{I}$.
+    \item Composition: $\hat{U}(t_2,t_1)\hat{U}(t_1,t_0)=\hat{U}(t_2,t_0)$.
+    \item Time reversal: $\hat{U}^\dag(t_2,t_1)=\hat{U}^{-1}(t_2,t_1)=\hat{U}(t_1,t_2)$.
+    \item Unitarity: $\hat{U}(t_2,t_1)\hat{U}^\dag(t_2,t_1)=\hat{U}^\dag(t_2,t_1)\hat{U}(t_2,t_1)=\hat{I}$.
+\end{enumerate}
+What do each of these expressions mean physically?\\[5pt]
+Suppose, erroneously, that the time evolution operator is not unitary, such that $\hat{U}(t,t)\neq\hat{I}$; what happens in each case, and in particular what is the difference between $\hat{U}^\dag(t_2,t_1)$ and $\hat{U}^{-1}(t_2,t_1)$?
+\end{qns}
+\begin{ans}
+For a time-independent Hamiltonian, the time shift operator is
+$$\hat{U}(t,t_0)=e^{-i\hat{H}(t-t_0)/\hbar}$$
+\begin{enumerate}
+    \item Identity: 
+    $$\hat{U}(t,t)=e^{-i\hat{H}(t-t)/\hbar}=e^{0\hat{H}}=\hat{I}$$
+    The state remains in the same state if no time evolution occurs.
+    \item Composition: 
+    $$\hat{U}(t_2,t_1)\hat{U}(t_1,t_0)=e^{-i\hat{H}(t_2-t_1)/\hbar}e^{-i\hat{H}(t_1-t_0)/\hbar}=e^{-i\hat{H}(t_2-t_0)/\hbar}=\hat{U}(t_2,t_0)$$
+    \item Time reversal:
+    $$\hat{U}^\dag(t_2,t_1)=e^{i\hat{H}^\dag(t_2-t_1)/\hbar}=e^{i\hat{H}(t_2-t_1)/\hbar}=e^{-i\hat{H}(t_1-t_2)/\hbar}=\hat{U}(t_1,t_2)$$
+    where $\hat{H}$ is Hermitian. Also,
+    $$\hat{U}^{-1}(t_2,t_1)=e^{i\hat{H}(t_2-t_1)/\hbar}=e^{-i\hat{H}(t_1-t_2)/\hbar}=\hat{U}(t_1,t_2)$$
+    Evolving a state in reverse chronological order is similar to that in the forward chronological order. In both cases, only the initial state and final state matters, intermediate steps in the evolution do not.
+    \item Unitarity: 
+    $$\hat{U}(t_2,t_1)\hat{U}^\dag(t_2,t_1)=e^{-i\hat{H}(t_2-t_1)/\hbar}e^{i\hat{H}(t_2-t_1)/\hbar}=e^{0\hat{H}}=\hat{I}$$
+    Similar for $\hat{U}^\dag(t_2,t_1)\hat{U}(t_2,t_1)$. After bringing an initial state to a future state at a later time and by reversing this procedure to the initial time, one recovers the initial state.
+\end{enumerate}
+Now if the time evolution operator is not unitary, one may write it as an exponential of a non-Hermitian operator, say
+$$\hat{U}(t,t_0)=e^{-i\hat{H}(t-t_0)/\hbar-at}$$
+\begin{enumerate}
+    \item non-identity $\hat{U}(t,t)=e^{-at}$: the state itself will exponentially decay in amplitude even without time evolution.
+    \item composition
+    $$\hat{U}(t_2,t_1)\hat{U}(t_1,t_0)=e^{-i\hat{H}(t_2-t_1)/\hbar-at_2}e^{-i\hat{H}(t_1-t_0)/\hbar-at_1}=e^{i\hat{H}(t_2-t_0)/\hbar}e^{-a(t_1+t_2)}$$
+    time evolution is now path dependent and the intermediate steps matter.
+    \item time reversal:
+    $$\hat{U}^\dag(t_2,t_1)=e^{i\hat{H}(t_2-t_1)/\hbar-at_2},\quad\hat{U}^{-1}(t_2,t_1)=e^{i\hat{H}(t_2-t_1)/\hbar+at_2},\quad\hat{U}(t_1,t_2)=e^{-i\hat{H}(t_1-t_2)/\hbar-at_1}$$
+    no time reversal symmetry, i.e. bringing the state in the forward chronological order is not the same if we do it in the reverse order.
+    \item unitarity:
+    $$\hat{U}(t_2,t_1)\hat{U}^\dag(t_2,t_1)=e^{-i\hat{H}(t_2-t_1)/\hbar-at_2}e^{i\hat{H}(t_2-t_1)/\hbar-at_2}=e^{-2at_2}$$
+    exponential decay in the norm, i.e. $\langle\psi'|\psi'\rangle=\langle\psi|U^\dag U|\psi\rangle=e^{-2at_2}$.
+\end{enumerate}
+\end{ans}
+\begin{qns}[Time shift operator]
+Show that the time shift operator of a time-independent Hamiltonian preserves the following:
+\begin{enumerate}
+    \item Inner products.
+    \item Normalization.
+    \item The trace of an operator in the Heisenberg picture.
+\end{enumerate}
+Likewise show that
+$$[\hat{U},\hat{H}]=\hat{0}$$
+What does this say about the eigenstates of $\hat{H}$ and $\hat{U}$, and what is the physical interpretation.\\[5pt]
+Additionally, show that
+\begin{equation}
+    \frac{\partial}{\partial t}e^{+i\hat{H}_0(t-t_0)/\hbar}=i\frac{1}{\hbar}\hat{H}_0e^{+i\hat{H}_0(t-t_0)/\hbar}=i\frac{1}{\hbar}e^{+i\hat{H}_0(t-t_0)/\hbar}\hat{H}_0\tag{1}
+\end{equation}
+\end{qns}
+\begin{ans}
+Again, the time shift operator of a time-independent Hamiltonian is $\hat{U}(t,0)=e^{-i\hat{H}t/\hbar}$.
+\begin{enumerate}
+    \item Inner products:
+    $$\langle\psi(t)|\phi(t)\rangle=\langle\psi(0)|\hat{U}^\dag(t,0)\hat{U}(t,0)|\phi(0)\rangle=\langle\psi(0)|e^{i\hat{H}t/\hbar}e^{-i\hat{H}t/\hbar}|\phi(0)\rangle=\langle\psi(0)|\phi(0)\rangle$$
+    \item Normalization: If $|\phi(t)\rangle=|\psi(t)\rangle$ in the previous result, then normalization is preserved.
+    \item The trace of an operator in the Heisenberg picture.
+    $$\Tr[\hat{Q}_H(t)]=\Tr[U^{-1}(t)\hat{Q}_sU(t)]=\sum_n\langle n|U^{-1}(t)\hat{Q}_SU(t)|n\rangle=U^{-1}(t)\sum_n\langle n|\hat{Q}_S|n\rangle U(t)=\Tr[\hat{Q}_S]$$
+\end{enumerate}
+let $|\phi\rangle$ be the energy eigenstate with energy eigenvalue $E$. Then,
+$$[\hat{U},\hat{H}]|\phi\rangle=\hat{U}\hat{H}|\phi\rangle-\hat{H}\hat{U}|\phi\rangle=E\hat{U}|\phi\rangle-\hat{H}e^{-iEt}|\phi\rangle=(Ee^{-iEt}-Ee^{-iEt})|\phi\rangle=0$$
+This means that $\hat{H}$ and $\hat{U}$ have a common set of eigenstates. The state is a stationary state with time-independent energy eigenvalue.
+$$\frac{\partial}{\partial t}e^{i\hat{H}_0(t-t_0)/\hbar}=\frac{i}{\hbar}\hat{H}_0e^{i\hat{H}_0(t-t_0)/\hbar}=\frac{i}{\hbar}e^{i\hat{H}_0(t-t_0)/\hbar}\hat{H}_0$$
+since any function of an operator commutes with the very same operator. A similar result is $[\hat{U},\hat{H}]=0$.
+\end{ans}
+\newpage
+\begin{qns}[Time ordering operator]
+If $\hat{H}(t')$ is a time-dependent Hamiltonian, show that the state propagator, when $t<t_0$ is given by
+\begin{equation}
+\hat{U}(t,t_0)=\vec{\mathcal{T}}\bigg[\exp\bigg\{\bigg(\frac{-i}{\hbar}\bigg)\int_{t_0}^t\hat{H}(t')dt'\bigg\}\bigg]\tag{2}
+\end{equation}
+where $\vec{\mathcal{T}}$ is the anti-time ordering operator.
+\end{qns}
+\begin{ans}
+We expand the state propagator up to $O(1/\hbar^2)$:
+$$\hat{U}(t,t_0)=1-\frac{i}{\hbar}\int_{t_0}^t\hat{H}(t_1)dt_1+\bigg(\frac{-i}{\hbar}\bigg)^2\int_{t_0}^t\int_{t_2}^2\hat{H}(t_1)\hat{H}(t_2)dt_1dt_2$$
+where the time ordering is $t_0>t_2>t_1>t$. The $O(1/\hbar^2)$ term can be written as
+$$\int_{t_0}^t\int_{t_0}^{t_1}\hat{H}(t_1)\hat{H}(t_2)dt_2dt_1=\int_{t_0}^t\int_{t_0}^t\hat{H}(t_1)\hat{H}(t_2)\Theta(t_2-t_1)dt_1dt_2$$
+so we can define the anti-time ordering operator to be 
+\begin{equation*}
+\vec{\mathcal{T}}[\hat{H}(t_2)\hat{H}(t_1)] = \begin{cases}
+\hat{H}(t_1)\hat{H}(t_2) &t_2>t_1\\
+\hat{H}(t_2)\hat{H}(t_1) &t_2<t_1
+\end{cases}
+\end{equation*}
+By induction, 
+\begin{align}
+    \hat{U}(t,t_0)&=\vec{\mathcal{T}}\bigg[\sum_{n=0}^\infty\bigg(-\frac{i}{\hbar}\bigg)^n\frac{1}{n!}\int_{t_0}^t\dots\int_{t_0}^t\hat{H}(t_1)\dots\hat{H}(t_n)~dt_1\dots dt_n\bigg]\nonumber\\&=\vec{\mathcal{T}}\bigg[\exp\bigg\{\bigg(-\frac{i}{\hbar}\bigg)\int_{t_0}^t\hat{H}(t')dt'\bigg\}\bigg]\nonumber
+\end{align}
+where we note that for the $O(1/\hbar^n)$ term, there are a total of $n!$ permutations we have to account for. Finally, the result follow from the definition of a matrix exponential.
+\end{ans}
+\begin{qns}[Time ordering operator]
+Consider the operator
+\begin{equation}
+    \hat{U}=\exp[\hat{\gamma}]\exp[\hat{\beta}]\exp[\hat{\alpha}]\tag{3}
+\end{equation}
+where $\hat{\alpha}$, $\hat{\beta}$, $\hat{\gamma}$ is a set of non-commuting observables. By considering the first few terms in each of the expansions, or otherwise, demonstrate the plausibility of the identity
+\begin{equation}
+\hat{U}=\cev{\mathcal{O}}[\exp\{\hat{\gamma}+\hat{\beta}+\hat{\alpha}\}]\tag{4}
+\end{equation}
+where $\cev{\mathcal{O}}$ is an ordering operator that forces the order $\hat{\gamma}$, $\hat{\beta}$, $\hat{\alpha}$.\\[5pt]
+Likewise, demonstrate that
+\begin{equation}
+    \hat{V}=\exp[\hat{\alpha}]\exp[\hat{\beta}]\exp[\hat{\gamma}]\tag{5}
+\end{equation}
+motivates
+\begin{equation}
+    \hat{V}=\vec{\mathcal{O}}[\exp\{\hat{\gamma}+\hat{\beta}+\hat{\alpha}\}]\tag{6}
+\end{equation}
+where $\vec{\mathcal{O}}$ is an anti-ordering operator that always reverses the sequence $\hat{\gamma}$, $\hat{\beta}$, $\hat{\alpha}$.\\[5pt]
+This shows that a product of exponentials can be replaced by an exponential of the sums, as long as the appropriate ordering operator is used. The identity does not hold without $\mathcal{O}$, and so is not true for a general sum of exponentials, unlike scalar arguments.\\[5pt]
+If the operators correspond to a discrete set of Hamiltonians at different times, $\hat{H}(t_n)$, explain why this motivates the identity
+\begin{equation}
+    \hat{U}=\cev{\mathcal{T}}\bigg[\exp\bigg\{\sum_n\hat{H}(t_n)\Delta t\bigg\}\bigg]\tag{7}
+\end{equation}
+leading in principle to the continuous integral form.\\[5pt]
+Why does the adjoint reverse the process?
+\end{qns}
+\newpage
+\begin{ans}
+For any operator $\hat{A}$, the matrix exponential is defined as
+$$\exp[\hat{A}]=\hat{I}+\hat{A}+\frac{1}{2!}\hat{A}^2+\dots$$
+The operator is then
+\begin{align}
+    &\hat{U}\nonumber\\&=\exp[\hat{\gamma}]\exp[\hat{\beta}]\exp[\hat{\alpha}]\nonumber\\&=(\hat{I}+\hat{\gamma}+\frac{1}{2}\hat{\gamma}^2+\dots)(\hat{I}+\hat{\beta}+\frac{1}{2}\hat{\beta}^2+\dots)(\hat{I}+\hat{\alpha}+\frac{1}{2}\hat{\alpha}^2+\dots)\nonumber\\&=\bigg(\hat{I}+\hat{\beta}+\frac{1}{2}\hat{\beta}^2+\hat{\gamma}+\hat{\gamma}\hat{\beta}+\frac{1}{2}\hat{\gamma}\hat{\beta}^2+\frac{1}{2}\hat{\gamma}^2+\frac{1}{2}\hat{\gamma}^2\hat{\beta}+\dots\bigg)(\hat{I}+\hat{\alpha}+\frac{1}{2}\hat{\alpha}^2+\dots)\nonumber\\&\approx\hat{I}+\hat{\beta}+\frac{1}{2}\hat{\beta}^2+\hat{\gamma}+\hat{\gamma}\hat{\beta}+\frac{1}{2}\gamma\hat{\beta}^2+\frac{1}{2}\hat{\gamma}^2+\frac{1}{2}\hat{\gamma}^2\hat{\beta}+\hat{\alpha}+\hat{\beta}\hat{\alpha}+\frac{1}{2}\hat{\beta}^2\hat{\alpha}+\hat{\gamma}\hat{\alpha}+\hat{\gamma}\hat{\beta}\hat{\alpha}+\frac{1}{2}\hat{\gamma}^2\hat{\alpha}+\frac{1}{2}\hat{\alpha}^2+\frac{1}{2}\hat{\beta}\hat{\alpha}^2+\frac{1}{2}\hat{\gamma}\hat{\alpha}^2\nonumber\\&=\hat{I}+\hat{\alpha}+\hat{\beta}+\hat{\gamma}+\frac{1}{2}(\hat{\beta}^2+\hat{\alpha}^2+\hat{\gamma}^2+\hat{\gamma}\hat{\beta}^2+\hat{\gamma}^2\hat{\beta}+\hat{\beta}^2\hat{\alpha}+\hat{\gamma^2}\hat{\alpha}+\hat{\beta}\hat{\alpha}^2+\hat{\gamma}\hat{\alpha}^2)+\hat{\gamma}\hat{\beta}+\hat{\gamma}\hat{\alpha}+\hat{\beta}\hat{\alpha}+\hat{\gamma}\hat{\beta}\hat{\alpha}\nonumber
+\end{align}
+Again, invoke the definition of the matrix exponential:
+$$\exp[\hat{\gamma}+\hat{\beta}+\hat{\alpha}]=\hat{I}+\hat{\gamma}+\hat{\beta}+\hat{\alpha}+\frac{1}{2}(\hat{\gamma}+\hat{\beta}+\hat{\alpha})^2+\frac{1}{6}(\hat{\gamma}+\hat{\beta}+\hat{\alpha})^3$$
+Now, acting the time ordering operator on the first two terms is trivial. The next two:
+$$\cev{\mathcal{O}}((\hat{\gamma}+\hat{\beta}+\hat{\alpha})^2)=\cev{\mathcal{O}}(\hat{\gamma}^2+\hat{\gamma}\hat{\beta}+\hat{\gamma}\hat{\alpha}+\hat{\beta}\hat{\gamma}+\hat{\beta}^2+\hat{\beta}\hat{\alpha}+\hat{\alpha}\hat{\gamma}+\hat{\alpha}\hat{\beta}+\hat{\alpha}^2)=\hat{\gamma}^2+2\hat{\gamma}\hat{\beta}+2\hat{\gamma}\hat{\alpha}+\hat{\beta}^2+2\hat{\beta}\hat{\alpha}+\hat{\alpha}^2$$
+\begin{eqnarray}
+    &&\cev{\mathcal{O}}((\hat{\gamma}+\hat{\beta}+\hat{\alpha})^3)\nonumber\\&=&\cev{\mathcal{O}}(\hat{\gamma}^3+\hat{\gamma}\hat{\beta}\hat{\gamma}+\hat{\gamma}\hat{\alpha}\hat{\gamma}+\hat{\beta}\hat{\gamma}^2+\hat{\beta}^2\hat{\gamma}+\hat{\beta}\hat{\alpha}\hat{\gamma}+\hat{\alpha}\hat{\gamma}^2+\hat{\alpha}\hat{\beta}\hat{\gamma}+\hat{\alpha}^2\hat{\gamma}+\hat{\gamma}^2\hat{\beta}+\hat{\gamma}\hat{\beta}^2+\hat{\gamma}\hat{\alpha}\hat{\beta}+\hat{\beta}\hat{\gamma}\hat{\beta}+\hat{\beta}^3\nonumber\\&&+\hat{\beta}\hat{\alpha}\hat{\beta}+\hat{\alpha}\hat{\gamma}\hat{\beta}+\hat{\alpha}\hat{\beta}^2+\hat{\alpha}^2\hat{\beta}+\hat{\gamma}^2\hat{\alpha}+\hat{\gamma}\hat{\beta}\hat{\alpha}+\hat{\gamma}\hat{\alpha}^2+\hat{\beta}\hat{\gamma}\hat{\alpha}+\hat{\beta}^2\hat{\alpha}+\hat{\beta}\hat{\alpha}^2+\hat{\gamma}\hat{\alpha}+\hat{\alpha}\hat{\beta}\hat{\alpha}+\hat{\alpha}^3)\nonumber\\&=&\hat{\gamma}^3+\hat{\beta}^3+\hat{\alpha}^3+6\hat{\gamma}\hat{\beta}\hat{\alpha}+3(\hat{\gamma}^2\hat{\beta}+\hat{\gamma}\hat{\beta}^2+\hat{\gamma}^2\hat{\alpha}+\hat{\gamma}\hat{\alpha}^2+\hat{\beta}^2\hat{\alpha}+\hat{\beta}\hat{\alpha}^2)\nonumber
+\end{eqnarray}
+Hence, adding the terms together based on the matrix exponential definition, we obtain our result. Similarly, for the reverse ordering, just take $\alpha\leftrightarrow\gamma$ in the LHS of our previous result, i.e.
+$$\hat{U}=\hat{I}+\hat{\alpha}+\hat{\beta}+\hat{\gamma}+\frac{1}{2}(\hat{\beta}^2+\hat{\alpha}^2+\hat{\gamma}^2+\hat{\alpha}\hat{\beta}^2+\hat{\alpha}^2\hat{\beta}+\hat{\beta}^2\hat{\gamma}+\hat{\alpha^2}\hat{\gamma}+\hat{\beta}\hat{\gamma}^2+\hat{\alpha}\hat{\gamma}^2)+\hat{\alpha}\hat{\beta}+\hat{\alpha}\hat{\gamma}+\hat{\beta}\hat{\gamma}+\hat{\alpha}\hat{\beta}\hat{\gamma}$$
+This time, the anti-ordering is
+$$\cev{\mathcal{O}}((\hat{\gamma}+\hat{\beta}+\hat{\alpha})^2)=\cev{\mathcal{O}}(\hat{\gamma}^2+\hat{\gamma}\hat{\beta}+\hat{\gamma}\hat{\alpha}+\hat{\beta}\hat{\gamma}+\hat{\beta}^2+\hat{\beta}\hat{\alpha}+\hat{\alpha}\hat{\gamma}+\hat{\alpha}\hat{\beta}+\hat{\alpha}^2)=\hat{\gamma}^2+2\hat{\beta}\hat{\gamma}+2\hat{\alpha}\hat{\gamma}+\hat{\beta}^2+2\hat{\alpha}\hat{\beta}+\hat{\alpha}^2$$
+$$\cev{\mathcal{O}}((\hat{\gamma}+\hat{\beta}+\hat{\alpha})^3)=\hat{\gamma}^3+\hat{\beta}^3+\hat{\alpha}^3+6\hat{\alpha}\hat{\beta}\hat{\gamma}+3(\hat{\beta}\hat{\gamma}^2+\hat{\beta}^2\hat{\gamma}+\hat{\alpha}\hat{\gamma}^2+\hat{\alpha}^2\hat{\gamma}+\hat{\alpha}\hat{\beta}^2+\hat{\alpha}^2\hat{\beta})$$
+Our result immediately shows that for $\hat{H}(t_1)$, $\hat{H}(t_2)$, $\hat{H}(t_3)$, we must have
+$$\hat{U}=\exp[\hat{H}(t_3)]\exp[\hat{H}(t_2)]\exp[\hat{H}(t_1)]=\cev{\mathcal{O}}[\exp\{\hat{H}(t_3)+\hat{H}(t_2)+\hat{H}(t_1)\}]$$
+By induction on $n$, we must have
+$$\hat{U}=\prod_n\exp[\hat{H}(t_n)\Delta t]=\cev{\mathcal{O}}\bigg[\exp\bigg\{\sum_n\hat{H}(t_n)\Delta t\bigg\}\bigg]$$
+As $\Delta t\rightarrow 0$, this discrete sum becomes a continuous integral. By relabelling the ordering operator $\cev{\mathcal{O}}$ as a time ordering operator $\cev{\mathcal{T}}$ which ensures the times are ordered like $\dots>t_{n+1}>t_n>t_{n-1}>\dots$, we obtain our result.
+$$\hat{U}=\cev{\mathcal{T}}\bigg[\exp\bigg\{\sum_n\hat{H}(t_n)\Delta t\bigg\}\bigg]$$
+The adjoint will be
+$$\hat{U}^\dag=[\exp[\hat{H}(t_3)]\exp[\hat{H}(t_2)]\exp[\hat{H}(t_1)]]^\dag=\exp[\hat{H}(t_1)]\exp[\hat{H}(t_2)]\exp[\hat{H}(t_3)]=\vec{\mathcal{O}}[\exp\{\hat{H}(t_3)+\hat{H}(t_2)+\hat{H}(t_1)\}]$$
+By a similar argument, we have
+$$\hat{U}=\vec{\mathcal{T}}\bigg[\exp\bigg\{\sum_n\hat{H}(t_n)\Delta t\bigg\}\bigg]$$
+Hence, the adjoint orders the time in a reverse chronological order.
+\end{ans}
+\newpage
+\subsection*{Density Operator}
+\begin{qns}[Density operator]
+If $\hat{\rho}$ is the density operator, prove the following:
+\begin{align}
+    \Tr[\hat{\rho}]&=1~\text{ normalization condition}\nonumber\\
+    \hat{\rho}^\dag\hat{\rho}&=\hat{\rho}\hat{\rho}^\dag~\text{self-adjoint}\nonumber\\
+    \hat{\rho}\hat{\rho}&=\hat{\rho}~\text{idempotent for a pure state}\tag{8}
+\end{align}
+\end{qns}
+\begin{ans}
+By definition, $\hat{\rho}=\sum_ip_i|\psi_1\rangle\langle\psi_i|$. The trace is
+$$\Tr[\hat{\rho}]=\Tr[\sum_i\langle\psi_i|p_i|\psi_i\rangle]=\sum_i\langle\psi_i|p_i|\psi_i\rangle=\sum_ip_i=1$$
+where we used the cyclic property of trace and that $\langle\psi_i|\psi_i\rangle=1$ and finally, $\sum_ip_i=1$. 
+$$\hat{\rho}^\dag\hat{\rho}=\sum_i\sum_jp_i^*p_j|\psi_i\rangle\langle\psi_i|\psi_j\rangle\langle\psi_j|=\sum_ip_i^*p_i|\psi_i\rangle\langle\psi_i|$$
+where $\langle\psi_i|\psi_j\rangle=\delta_{ij}$. Similarly, $\hat{\rho}\hat{\rho}^\dag=\sum_ip_ip_i^*|\psi_i\rangle\langle\psi_i|=\hat{\rho}^\dag\hat{\rho}$. But, the probabilities are real, so $\hat{\rho}=\hat{\rho}^\dag$, and we must have
+$$\hat{\rho}\hat{\rho}=\hat{\rho}^\dag\hat{\rho}=\sum_i|p_i|^2|\psi_i\rangle\langle\psi_i|$$
+But, RHS is just $|\psi_\alpha\rangle\langle\psi_\alpha|=\rho$ for a pure state, where $p_\alpha=1$ for some $i=\alpha$ and 0 otherwise.
+\end{ans}
+\begin{qns}[Pure, mixed state]
+Prove that for a pure state the following identity must hold
+\begin{equation}
+    \Tr[\hat{\rho}^2]=1\tag{9}
+\end{equation}
+whereas for a mixed state
+\begin{equation}
+    \Tr[\hat{\rho}^2]<1\tag{10}
+\end{equation}
+where $\hat{\rho}$ is any normalized density operator.\\[5pt]
+Using this result, show that for both time dependent and time independent Hamiltonians, a pure state can only evolve into a pure state, and a mixed state can only evolve into a mixed state.
+\end{qns}
+\begin{ans}
+From the previous question, we have for a pure state,
+$$\Tr[\hat{\rho}^2]=\Tr[\hat{\rho}]=1$$
+For a mixed state,
+$$\Tr[\hat{\rho}^2]=\Tr\bigg[\sum_i\sum_jp_ip_j|\psi_i\rangle\langle\psi_i|\psi_j\rangle\langle\psi_j|\bigg]=\Tr\bigg[\sum_i|p_i|^2|\psi_i\rangle\langle\psi_i|\bigg]=\sum_i\langle\psi_i|p_i^2|\psi_i\rangle=\sum_i|p_i|^2$$
+where $\langle\psi_i|\psi_j\rangle=\delta_{ij}$ and this result is true $\forall p_i<1$, but $\sum_ip_i=1$, hence $\sum_i|p_i|^2<1$. For a unitary evolution, the density state transforms like
+$$|\psi_i\rangle\rightarrow U|\psi_i\rangle,\quad\rho\mapsto\rho'=\sum_ip_i(U|\psi_i\rangle)(U|\psi_i\rangle)^\dag=\sum_ip_iU|\psi_i\rangle\langle\psi_i|U^\dag=U\rho U^\dag$$
+By the cyclic property of the trace, we then have
+$$\Tr[\rho'^2]=\Tr[U\rho U^\dag U\rho U^\dag]=\Tr[U\rho^2U^\dag]=\Tr[\rho^2]$$
+hence unchanged after a unitary evolution, i.e. the character (mixed or pure) of a state is unchanged after a unitary evolution.
+\end{ans}
+\newpage
+\begin{qns}[Pure, mixed state]
+Suppose that $\hat{\rho}$ is the density operator for a pure state. Show that for a time independent Hamiltonian, the off-diagonal matrix elements, in the energy eigenstate basis at $t=0$, oscillate in time with a frequency that is given by the energy difference between the most extreme energies in the pure state.\\[5pt]
+Also show that fastest rate of change of any expectation value is given by the difference between the highest and lowest energy levels in the state, or between the highest and lowest energy levels to which the measurement is sensitive, whichever is the smallest.\\[5pt]
+Why is this also true for a mixed state?\\[5pt]
+Show that for a pure state, the time variation of the matrix elements are consistent with von Neumann's equation.
+\end{qns}
+\begin{ans}
+A pure state may be written in terms of a linear superposition of its energy eigenstates
+$$\hat{\rho}=|\psi\rangle\langle\psi|,\quad|\psi\rangle=\sum_ic_i|\psi_i\rangle,\quad\hat{H}|\psi\rangle=\sum_ic_i\hbar\omega_i|\psi_i\rangle$$
+which gives
+$$\hat{\rho}=\sum_{i}\sum_jc_ic_j^*|\psi_i\rangle\langle\psi_j|$$
+Each of these energy eigenstates is a solution to the Schr\"{o}dinger's equation, i.e.
+$$\frac{\partial}{\partial t}|\psi\rangle=-i\sum_j\omega_jc_j|\psi_j\rangle\implies\frac{\partial}{\partial t}c_j=-i\omega_jc_j$$
+The rate of change of the off-diagonal elements is
+$$\frac{d}{dt}\rho_{jk}=\frac{d}{dt}(c_jc_k^*)=c_k^*\frac{dc_j}{dt}+c_j\frac{dc_k^*}{dt}=-i\omega_jc_jc_k^*+i\omega_kc_jc_k^*=-i(\omega_j-\omega_k)\rho_{jk}$$
+which gives the solution $\rho_{jk}(t)=e^{-i(\omega_j-\omega_k)t}\rho_{jk}(0)$. \textcolor{red}{why is it the most extreme energies?} The rate of change of the expectation value of an arbitrary operator $\hat{A}$ is
+$$\frac{\partial\hat{A}}{\partial t}=\frac{\partial}{\partial t}\sum_{m,n}c_nc_m^*e^{-i(E_n-E_m)t/\hbar}A_{mn}=\sum_{n,m}\frac{E_m-E_n}{\hbar}c_m^*c_ne^{-i(E_m-E_n)t/\hbar}A_{mn}$$
+where we assumed $A_{mn}$ does not depend on time explicitly. The most extreme energy differences will dominate in the rate of change of expectation.\\[5pt]
+For a mixed state, $\hat{\rho}=\sum_ip_i|\psi_i\rangle\langle\psi_i|$ where each term of the sum, i.e. $p_i|\psi_i\rangle\langle\psi_i|\propto$ a pure state $|\psi_i\rangle\langle\psi_i|$. Hence, if all the previously defined results apply to pure states, they should apply to a linear combination of pure states, i.e. mixed state.
+
+We have the rate of change of the pure state to be
+\begin{align}
+    i\hbar\frac{\partial\hat{\rho}^S}{\partial t}&=i\hbar\frac{\partial}{\partial t}|\psi(t)\rangle\langle\psi(t)|\nonumber\\&=i\hbar\frac{\partial}{\partial t}\sum_{m,n}c_m(0)c_n^*(0)e^{-i(E_m-E_n)t/\hbar}|\phi_m\rangle\langle\phi_n|\nonumber\\&=i\hbar\sum_{m,n}c_m(0)c_n^*(0)\bigg[-i\frac{E_m-E_n}{\hbar}\bigg]e^{-i(E_m-E_n)t/\hbar}|\phi_m\rangle\langle\phi_n|\nonumber
+\end{align}
+But the commutator gives
+$$[\hat{H},\hat{\rho}]=\sum_{m,n}c_m(0)c_n^*(0)(E_m-E_n^*)e^{-i(E_m-E_n)t/\hbar}|\phi_m\rangle\langle\phi_n|$$
+but $E_n^*=E_n\in\mathbb{R}$. Hence, the pure state's time variation satisfies the von Neumann equation. 
+\end{ans}
+\newpage
+\begin{qns}[Thermal density operator]
+If a simple harmonic system is described by the thermal density operator $\hat{\rho}(T)$, which is a function of temperature, show that the average energy is given by:
+\begin{equation}
+    \langle E\rangle=\hbar\omega\bigg[\frac{1}{2}+\frac{1}{e^{\hbar\omega/k_BT}-1}\bigg]\tag{11}
+\end{equation}
+Calculate an expression for the variance in the energy, and comment on the terms.
+\end{qns}
+\begin{ans}
+The thermal density operator is
+$$\hat{\rho}(T)=\frac{1}{Z(\beta)}\sum_ne^{-\beta E_n}|E_n\rangle\langle E_n|,\quad\beta=\frac{1}{k_BT},\quad E_n=\hbar\omega(n+0.5),\quad Z(\beta)=\sum_ne^{-\beta E_n}$$
+The partition function (normalization) $Z(\beta)$ is
+$$Z(\beta)=e^{-\beta\hbar\omega/2}\sum_ne^{-\beta n\hbar\omega}=\frac{e^{-\beta\hbar\omega/2}}{1-e^{-\beta\hbar\omega}}=\frac{1}{2\sinh(\beta\hbar\omega/2)}$$
+The mean energy is
+\begin{align}
+    \langle E\rangle&=\Tr(\hat{\rho}\hat{H})\nonumber\\&=\sum_n\langle E_n|\hat{\rho}|\hat{H}|E_n\rangle\nonumber\\&=\sum_{n,n'}p_n\langle E_n|E_{n'}\rangle\langle E_{n'}|\hat{H}|E_n\rangle\nonumber\\&=\sum_np_n\langle E_n|\hat{H}|E_n\rangle\nonumber\\&=\frac{1}{Z(\beta)}\sum_nE_ne^{-\beta E_n}\nonumber\\&=-\frac{\partial}{\partial\beta}\log Z\nonumber\\&=-\frac{\partial}{\partial\beta}\bigg[\log(e^{-\beta\hbar\omega/2})-\log(1-e^{-\beta\hbar\omega})\bigg]\nonumber\\&=\hbar\omega\bigg[\frac{1}{2}+\frac{1}{e^{\hbar\omega/k_BT}-1}\bigg]\nonumber
+\end{align}
+The variance is
+\begin{align}
+    \langle E^2\rangle-\langle E\rangle^2&=\sum_ip_i\langle E_i|\hat{H}^2|E_i\rangle-\bigg[\sum_ip_i\langle E_i|\hat{H}|E_i\rangle\bigg]^2\nonumber\\&=\frac{1}{Z}\sum_nE_n^2e^{-\beta E_n}-\bigg[\sum_n\frac{E_ne^{-\beta E_n}}{Z}\bigg]^2\nonumber\\&=\frac{1}{Z}\frac{\partial^2Z}{\partial\beta^2}-\frac{1}{Z^2}\bigg(\frac{\partial Z}{\partial\beta}\bigg)^2\nonumber\\&=\frac{\partial^2}{\partial\beta^2}\log Z\nonumber\\&=-\frac{\partial}{\partial\beta}\langle E\rangle\nonumber\\&=\frac{\hbar^2\omega^2}{(e^{\beta\hbar\omega}-1)^2}\nonumber\\&=\bigg[\langle E\rangle-\frac{1}{2}\hbar\omega\bigg]^2\nonumber
+\end{align}
+\end{ans}
+\newpage
+\section{Problem Sheet 3}
+\subsection*{Time independent perturbation theory}
+\begin{qns}[Perturbation theory in rotational dynamics]
+Suppose that a rigid diatomic molecule, having moment of inertia $I$ and permanent dipole moment $\mathbf{d}$, is constrained to rotate in the $x$-$y$ plane. By considering $\hat{L}_z$, show that the Hamiltonian is given by
+\begin{equation}
+\hat{H}_0=-\frac{\hbar^2}{2I}\frac{d^2}{d\phi^2}\tag{1}
+\end{equation}
+Derive the three lowest-order energy eigenvalues of the freely rotating system, and their corresponding wavefunctions.\\[5pt]
+A weak, static electric field $\mathbf{E}$ is applied in the direction of the $y$ axis. Find the matrix elements of the associated perturbation in the basis of the energy states of the freely rotating system. Present your results in terms of $|\mathbf{d}|$, $I$ and $|\mathbf{E}|$.\\[5pt]
+Calculate to second order the new energies of the three lowest-energy states.\\[5pt]
+Are there any degeneracies, and does the perturbation split them?
+\end{qns}
+\begin{ans}
+The Hamiltonian of a classical rigid diatomic molecule is 
+$$H=\frac{1}{2}I\omega_z^2=\frac{L_z^2}{2I}$$
+where its angular momentum is $L_z=I\omega_z$. Promote the observables to operators: the zeroth order Hamiltonian is 
+$$\hat{H}_0=\frac{1}{2I}\hat{L}_z^2=\frac{1}{2I}\bigg(-i\hbar\frac{d}{d\phi}\bigg)^2=\frac{-\hbar^2}{2I}\frac{d^2}{d\phi^2}$$
+The zeroth order energy eigenstate is
+$$\hat{H}_0\psi=E\psi\implies\frac{d^2\psi}{d\phi^2}=-\frac{2IE}{\hbar^2}\psi\implies\psi=Ae^{\pm i\omega\phi},\quad\omega=\frac{\sqrt{2IE}}{\hbar}$$
+but $\psi$ is periodic in $\phi$, i.e. $\psi(\phi)=\psi(\phi+2\pi)\implies e^{\pm i\omega 2\pi}=1\implies\omega\in\mathbb{Z}^+$. So, write $\psi(\phi)=Ae^{\pm in\phi}$ where $E=\frac{n^2\hbar^2}{2I}$ for $n\in\mathbb{Z}^+$. Normalization gives $A=\frac{1}{\sqrt{2\pi}}$. The three lowest-order energy eigenvalues and eigenstates are
+$$E_0=0,~\psi_0=0,\quad E_1=\frac{\hbar^2}{2I},~|\psi_{1,\pm}\rangle=\frac{1}{\sqrt{2\pi}}e^{\pm i\phi},\quad E_2=\frac{2\hbar^2}{I},~|\psi_{2,\pm}\rangle=\frac{1}{\sqrt{2\pi}}e^{\pm 2i\phi}$$
+The perturbation is $\hat{\Delta}=-\mathbf{d}\cdot\mathbf{E}=|\mathbf{d}||\mathbf{E}|\sin\phi$ since $\mathbf{E}=E\mathbf{\hat{y}}$. In the basis of the unperturbed states $\{|\psi_{n,+}\rangle,|\psi_{n,-}\rangle\}$:
+$$\langle\psi_{n,\pm}|\hat{\Delta}|\psi_{n,\pm}\rangle=\int_0^{2\pi}\frac{|\mathbf{d}||\mathbf{E}|}{2\pi}\sin\phi d\phi=0$$
+$$\langle\psi_{n,\pm}|\hat{\Delta}|\psi_{n,\mp}\rangle=-\int_0^{2\pi}\frac{|\mathbf{d}||\mathbf{E}|}{2\pi}e^{\mp i2n\phi}\sin\phi d\phi=\frac{|\mathbf{d}||\mathbf{E}|}{4\pi}i(\delta_{1,2n}-\delta_{1,-2n})=0$$ since $n\in\mathbb{Z}^+$. The first order correction to the energy eigenvalues are zero. Perturbation does not split the double degeneracy in $E_n$. Now, write $\psi_m=\frac{1}{\sqrt{2\pi}}e^{im\phi}$ where $m\in\mathbb{Z}$. Then,
+$$\langle\psi_m|\hat{\Delta}|\psi_n\rangle=-\frac{|\mathbf{d}||\mathbf{E}|}{2\pi}\int_0^{2\pi}e^{i(n-m)\phi}\sin\phi d\phi=\frac{i}{2}|\mathbf{d}||\mathbf{E}|(\delta_{n,m-1}-\delta_{n,m+1})$$
+We can also matriculate this perturbation in terms of the unperturbed basis states
+$$\hat{\Delta}=-\frac{idE}{2}\begin{pmatrix}0&1&1\\1&0&0\\1&0&0\\\end{pmatrix}$$
+which upon diagonalization, gives all eigenvalues to be zero. This also follows from $[\hat{\Delta},\hat{L}_z]=0$ so the quantum number $n$ is a good quantum number. We proceed to find the second order correction to the energy:
+$$E_n^{(2)}=\sum_{m\neq n}\frac{|\langle\psi_m|\hat{\Delta}|\psi_n\rangle|^2}{E_n^{(0)}-E_m^{(0)}}$$
+To second order, the corrected new energies are
+$$E_0^{(2)}=-\frac{|\mathbf{d}|^2|\mathbf{E}|^2}{4}\sum_{m\neq 0}\frac{\delta_{0,m-1}-\delta_{0,m+1}}{0-E_m^{(0)}}=0,\quad m=\pm1$$
+\begin{align}
+E_1^{(2)}&=\frac{\hbar^2}{2I}-\frac{2I}{\hbar^2}\frac{|\mathbf{d}|^2|\mathbf{E}|^2}{4}\sum_{m\neq1}\frac{\delta_{1,m-1}-\delta_{1,m+1}}{1-m^2}\nonumber\\&=\frac{\hbar^2}{2I}-\frac{I|\mathbf{d}|^2|\mathbf{E}|^2}{2\hbar^2}\bigg(\frac{1}{1-4}-1\bigg)\nonumber\\&=\frac{\hbar^2}{2I}+\frac{2I|\mathbf{d}|^2|\mathbf{E}|^2}{\hbar^2},\quad m=2,~m=0\nonumber
+\end{align}
+\begin{align}
+E_2^{(2)}&=\frac{4\hbar^2}{2I}-\frac{I|\mathbf{d}|^2|\mathbf{E}|^2}{2\hbar^2}\sum_{m\neq2}\frac{\delta_{2,m-1}-\delta_{2,m+1}}{4-m^2}\nonumber\\&=\frac{2\hbar^2}{I}-\frac{I|\mathbf{d}|^2|\mathbf{E}|^2}{2\hbar^2}\bigg(\frac{1}{4-9}-\frac{1}{4-1}\bigg)\nonumber\\&=\frac{2\hbar^2}{I}+\frac{4I|\mathbf{d}|^2|\mathbf{E}|^2}{15\hbar^2},\quad m=3,~1\nonumber
+\end{align}
+Similarly, $E_{-n}^{(2)}=E_{n}^{(2)}$. The perturbation splits the degeneracy only in the second order correction.
+\end{ans}
+\newpage
+\begin{qns}[Perturbation theory of an electron trap]
+Consider an electron that is (i) constrained to move in 1D, and (ii) subject to periodic boundary conditions at $x = −L/2$ and $x = +L/2$. An electron trap is introduced in the form of a small potential well having the form
+\begin{equation}
+    -V_0e^{-x^2/a^2}\tag{2}
+\end{equation}
+where $a<L$.\\[5pt]
+Explain why, in the absence of the perturbation, the system has degenerate states.\\[5pt]
+Show that the perturbed energy eigenvalues of degenerate pairs take the form
+\begin{equation}
+    E_{n,\pm} = E^0_n −\sqrt{\pi}V_0\frac{a}{L}\bigg(1\pm e^{-k_n^2a^2}\bigg)\tag{3}
+\end{equation}
+Draw a graph to illustrate the way in which degeneracy returns as $ka$ is increased from $0$ to $2\pi$.\\[5pt]
+Explain, without proof, how the effect of introducing the perturbation differs between the cases where (i) the unperturbed potential has periodic boundary conditions at $x=-L/2$ and $x = +L/2$, and (ii) hard boundary conditions where the potential tends to $+\infty$ at $x=-L/2$ and $x=+L/2$.
+\end{qns}
+\begin{ans}
+In the absence of perturbation, the eigenstates are plane waves. The translational symmetry results in a highly degenerate system. In the presence of periodic boundary conditions, the wavenumber $k$ takes only discrete possibilities ($k=\frac{2\pi n}{L}$), but the system is still highly degenerate. The unperturbed degenerate eigenstate is $\psi_{n,\pm}=\frac{1}{\sqrt{L}}e^{\pm i2\pi nx/L}$ with energy eigenvalue is $E_n^{(0)}=\frac{\hbar^2}{2m}(\frac{2\pi n}{L})^2$.\\[5pt]
+In the basis of the unperturbed eigenstates $\{|\psi_+\rangle,|\psi_-\rangle\}$, the perturbation $\hat{\Delta}=-V_0e^{-x^2/a^2}$ is
+$$\langle\psi_{n,\pm}|\hat{\Delta}|\psi_{n,\pm}\rangle=\int_{-\infty}^\infty-\frac{V_0}{L}e^{-x^2/a^2}dx=-\frac{aV_0}{L}\sqrt{\pi}$$
+$$\langle\psi_{n,\pm}|\hat{\Delta}|\psi_{n,\mp}\rangle=\int_{-\infty}^\infty-\frac{V_0}{L}e^{-x^2/a^2}e^{\mp 2ik_nx}dx=-\frac{V_0}{L}\int_{-\infty}^\infty e^{-x^2/a^2}\cos(2k_nx)dx$$
+where the integration identity is deduced from
+$$I(a)=\int_{-\infty}^\infty e^{-x^2}\cos ax dx=\sqrt{\pi}e^{-a^2/4}$$
+which was obtained by first differentiating the integral with respect to $a$, followed by integration. Next, we diagonalize $\hat{\Delta}$ to give the first order energy correction
+$$E_{n,\pm}^{(1)}=\alpha(1\pm e^{-a^2k_n^2}),\quad\alpha=-\frac{V_0a}{L}\sqrt{\pi}$$
+The perturbed energy eigenvalues will then be
+$$E_{n,\pm}=E_n^{(0)}+E_{n,\pm}^{(1)}=E_n^{(0)}-\sqrt{\pi}V_0\frac{a}{L}(1\pm e^{-k_n^2a^2})$$
+\begin{center}
+\begin{tikzpicture}
+      \draw[->] (0,0) -- (4,0) node[right] {$k_na$};
+      \draw[->] (0,0) -- (0,3.5) node[left] {$E_{n,\pm}$};
+      \draw[domain=0:3,smooth,variable=\x,black] plot ({\x},{3-(1+exp(-0.25*\x*\x))});
+      \draw[domain=0:3,smooth,variable=\x,black] plot ({\x},{3-(1-exp(-0.25*\x*\x))});
+      \draw (0,0) node[below]{0};
+      \draw (3,0) node[below]{$2\pi$};
+\end{tikzpicture}
+\begin{tikzpicture}
+      \draw[->] (0,0) -- (4,0) node[right] {$k_na$};
+      \draw[->] (0,0) -- (0,3.5) node[left] {$E_{n,+}-E_{n,-}$};
+      \draw[domain=0:3,smooth,variable=\x,blue] plot ({\x},{2*(exp(-0.25*\x*\x))});
+      \draw (0,0) node[below]{0};
+      \draw (3,0) node[below]{$2\pi$};
+\end{tikzpicture}
+\end{center}
+The difference would be the degeneracy of the unperturbed energy eigenstate. (i) has degeneracy which will be split by the perturbation, while (ii) is not degenerate.
+\end{ans}
+\newpage
+\begin{qns}[Perturbation Theory of the hydrogen nucleus]
+The energy levels of the hydrogen atom are influenced by the finite size of the proton. A simple model of this effect is to treat the proton as a uniformly charged hollow spherical shell of radius $b = 5\times 10^{-16}$ m.\\[5pt]
+Show that, for this model, the change in the electrostatic potential energy corresponds to introducing a perturbation
+\begin{equation}
+\frac{e^2}{4\pi\epsilon_0}\bigg(\frac{1}{r}-\frac{1}{b}\bigg)\quad r<b\tag{4}
+\end{equation}
+into the normal Schr\"{o}dinger equation for the hydrogen atom.\\[5pt]
+Using first-order perturbation theory, estimate the energy shifts of the hydrogen 2s and 2p states, and comment on your findings.\\[5pt]
+Why is the energy shift the same for all three 2p states, and why can each of the 2s and 2p states be considered independently even though they are initially degenerate?\\[5pt]
+Hint: The integrals can be simplified considerably by noting that the size of the nucleus is much smaller than the atomic Bohr radius, i.e. $b<<a_0$. The 2s and 2p hydrogen atom wavefunctions are
+$$\psi_{2s}=\sqrt{\frac{1}{8\pi a_0^3}}\bigg(1-\frac{r}{2a_0}\bigg)e^{-r/2a_0},\quad\psi_{2p_0}=\frac{re^{-r/2a_0}}{\sqrt{32\pi a_0^5}}\cos\theta,\quad\psi_{2p_{\pm1}}=\mp\frac{re^{-r/2a_0}}{\sqrt{64\pi a_0^5}}e^{\pm i\phi}\sin\theta$$
+\end{qns}
+\begin{ans}
+Invoke Gauss' theorem to the uniformly charged hollow spherical shell:
+$$V(r>b)=-\frac{e^2}{4\pi\varepsilon_0r},\quad V(r<b)=-\frac{e^2}{4\pi\varepsilon_0b}$$
+The change in geometry is akin to a perturbation equal to the difference in electrostatic potential energy. This perturbation is
+$$\hat{\Delta}(r<b)=\frac{e^2}{4\pi\varepsilon_0}(r^{-1}-b^{-1}),\quad\hat{\Delta}(r>b)=0$$
+The first-order energy correction to the $2s$ orbital is
+\begin{align}
+E^{(1)}_{2s}&=\int\psi_{2s}^*\hat{\Delta}\psi_{2s}d^3r\nonumber\\&=\frac{1}{8\pi a_0^3}\frac{e^2}{4\pi\varepsilon_0}\int_0^b\bigg(1-\frac{r}{2a_0}\bigg)^2\bigg(\frac{1}{r}-\frac{1}{b}\bigg)e^{-r/a_0}r^2e^{-r/2a_0}dr\nonumber
+\end{align}
+but $b<<a_0$, so we may approximate the integral as
+$$E^{(1)}_{2s}\approx\frac{e^2}{8\pi\varepsilon_0a_0^3}\int_0^b\bigg(\frac{1}{r}-\frac{1}{b}\bigg)r^2dr=\frac{b^2}{6a_0^2}\frac{e^2}{8\pi\varepsilon_0a}$$
+Bearing in mind this approximation, we do the same for the 2p orbitals:
+\begin{align}
+    E^{(1)}_{2p_0}&=\int\psi_{2p_0}^*\hat{\Delta}\psi_{2p_0}d^3r\nonumber\\&=\frac{1}{32\pi a_0^5}\frac{e^2}{4\pi\varepsilon_0}\int_0^b\int_0^\pi re^{-r/2a_0}\cos\theta\bigg(\frac{1}{r}-\frac{1}{b}\bigg)re^{-r/2a_0}\cos\theta\sin\theta d\theta~ r^2dr\int_0^{2\pi}d\phi\nonumber\\&\approx\frac{e^2}{128\pi^2\varepsilon_0a_0^5}2\pi\frac{1}{3}[\cos^3\theta]_{-1}^1\int_0^br^3-\frac{r^4}{b}dr\nonumber\\&=\frac{b^4}{240 a_0^4}\frac{e^2}{8\pi\varepsilon_0a_0}\nonumber
+\end{align}
+\begin{align}
+    E^{(1)}_{2p_{\pm}}&=\int\psi_{2p_{\pm1}}^*\hat{\Delta}\psi_{2p_{\pm1}}d^3r\nonumber\\&=\frac{1}{64\pi a_0^5}\frac{e^2}{4\pi\varepsilon_0}\int_0^b\int_0^\pi re^{-r/2a_0}e^{\mp i\phi}\sin\theta\bigg(\frac{1}{r}-\frac{1}{b}\bigg)re^{-r/2a_0}e^{\pm i\phi}\sin\theta\sin\theta d\theta r^2dr~\int_0^{2\pi}d\phi\nonumber\\&\approx\frac{e^2}{256\pi^2\varepsilon_0a_0^5}2\pi\int_{-1}^1(1-\cos^2\theta)d\cos\theta\int_0^br^3-\frac{r^4}{b}dr\nonumber\\&=\frac{b^4}{240 a_0^4}\frac{e^2}{8\pi\varepsilon_0a_0}\nonumber
+\end{align}
+The perturbation splits the degeneracy of the 2s and 2p orbitals, to first order. So the order in magnitude comparisons give
+$$E^{(1)}_{2s}=O((b/a)^2),\quad E^{(1)}_{2p}=O((b/a)^4)$$
+The perturbation is spherically symmetric and is non-zero at the origin. The wavefunctions $\psi_{2p}$ is zero at but $\psi_{2s}$ is finite. Hence, $ E^{(1)}_{2p}$ is much smaller than $E^{(1)}_{2s}$.\\[5pt]
+Notice that $E^{(1)}$ is independent of the angular orientation of the 2p orbitals. This is because $\hat{\Delta}$ is isotropic, i.e. $[\hat{\Delta},\hat{L}_z]=0$, and hence the energy shift cannot depend on the quantum number $m$. Furthermore, $[\hat{\Delta},\hat{L}^2]=0$ and hence although states of different $\ell$ (but same $n$) have same energies, $\hat{\Delta}$ does not mix these states, hence non-degenerate perturbation theory is sufficient. 
+\end{ans}
+\newpage
+\begin{qns}[Perturbation Theory and the polarizability of hydrogen]
+An applied electric field $\mathbf{E}$ can induce a dipole moment in an atom according to the expression $\alpha\epsilon_0\mathbf{E}$ where $\alpha$ is the polarisibility.\\[5pt]
+The polarisibility of the hydrogen atom in its ground state may be estimated using perturbation theory.\\[5pt]
+Working to second order in the electric field strength, show that the energy shift in the ground state $|0\rangle$ is
+\begin{equation}
+    \Delta E=(eE)^2\sum_{k\neq 0}\frac{|\langle k|z|0\rangle|^2}{E_0-E_k}\tag{6}
+\end{equation}
+where $E_k$ is the unperturbed energy of state $|k\rangle$. Hence show that the polarisability is 
+\begin{equation}
+    \alpha=\frac{2e^2}{\epsilon_0}\sum_{k\neq 0}\frac{|\langle k|z|0\rangle|^2}{E_k-E_0}\tag{7}
+\end{equation}
+Show that the same result may be obtained from the perturbed wavefunction to first-order in $E$ by evaluating the expectation value of the induced electric dipole moment.\\[5pt]
+Evaluation of $\alpha$ is tedious, but a useful upper bound may be obtained by noting that $E_k\geq E_1$, where $E_1$ is the energy of the first excited state. Using this observation, show that $\alpha\leq(64/3)\pi a_0^3$. Compare this upper bound with the experimental value of $\alpha=8.5\times10^{-30}$ m$^3$.\\[5pt]
+[The ground state of the hydrogen atom, $|0\rangle:=(\pi a_0^3)^{-1/2}e^{-r/a_0}$, will be needed to compute the matrix element $\langle 0|z^2|0\rangle$.]
+\end{qns}
+\begin{ans}
+To avoid confusion, we renotate the electric field as $\mathcal{E}$. Without loss of generality, take $\boldsymbol{\mathcal{E}}$ to lie along $\mathbf{\hat{z}}$, so the perturbation Hamiltonian is $\hat{\Delta}=e\mathcal{E}\hat{Z}$ where $\hat{Z}$ is the $z$-operator. The energy shift is
+$$E^{(1)}=\langle 0|e\mathcal{E}\hat{Z}|0\rangle=0$$
+since $\hat{\Pi}^{-1}\hat{Z}\hat{\Pi}=-\hat{Z}$ where $\hat{\Pi}$ is the parity operator. The ground state is an even eigenstate of parity since it is spherically symmetric. Hence,
+$$\langle 0|\hat{Z}|0\rangle=-\langle 0|\Pi^{-1}\hat{Z}\Pi|0\rangle=-\langle 0|\hat{Z}|0\rangle\implies\langle 0|\hat{Z}|0\rangle=0$$
+The ground state is thus unperturbed by the linear Stark effect. We then proceed to find the second order correction to the energy:
+$$E^{(2)}=e^2\mathcal{E}^2\sum_{n=2}^\infty\sum_{\ell<n}\sum_{m=-\ell}^\ell\frac{|\langle 0|\hat{Z}|n,\ell,m\rangle|^2}{E_0-E_n}$$
+where $E_0$ is the ground state. However, recall the selection rules:
+$$\langle n',\ell',m'|\hat{X}|n,\ell,m\rangle=0\text{ unless }|\ell'-\ell|=1$$
+so the second order correction simplifies to
+$$E^{(2)}=e^2\mathcal{E}^2\sum_{n=2}^\infty\frac{|\langle 0|\hat{Z}|n,1,0\rangle|^2}{E_0-E_n}$$
+We can subsequently denote $|k\rangle$ as $|n,1,0\rangle$ and $|0\rangle$ as $|1,0,0\rangle$. The induced dipole moment is $\mathbf{d}=\alpha\varepsilon_0\boldsymbol{\mathcal{E}}$. The dipole energy in presence of the field is
+$$U=-\int_0^{\mathcal{E}}\mathbf{d}(\mathcal{E})\cdot d\mathbf{E}=-\frac{1}{2}\alpha\varepsilon_0\mathcal{E}^2$$
+We need to integrate since this dipole is induced and it builds up as the electric field strength ramps up. Hence, we have the polarizability to be
+$$\alpha=\frac{2e^2}{\varepsilon_0}\sum_{k\neq 0}\frac{|\langle k|\hat{Z}|0\rangle|^2}{E_k-E_0}$$
+The perturbed wavefunction to order $O(\mathcal{E})$:
+$$|\psi\rangle=|0\rangle+\sum_{k\neq 0}\frac{\langle k|e\mathcal{E}\hat{Z}|0\rangle}{E_0-E_k}|k\rangle$$
+We have
+\begin{align}
+    \langle\psi|e\mathcal{E}\hat{Z}|\psi\rangle&=\langle 0|e\hat{Z}\mathcal{E}|0\rangle+\sum_{k\neq 0}\bigg[\frac{\langle k|e\mathcal{E}\hat{Z}|0\rangle}{E_0-E_k}\langle 0|e\mathcal{E}\hat{Z}|k\rangle+\frac{(\langle k|e\mathcal{E}\hat{Z}|0\rangle)^*}{E_0-E_k}\langle k|e\mathcal{E}\hat{Z}|0\rangle\bigg]+O(\mathcal{E}^2)\nonumber\\&=2\mathcal{E}\sum_{k\neq 0}\frac{|\langle k|e\mathcal{E}\hat{Z}|0\rangle|^2}{E_0-E_k}+O(\mathcal{E}^2)\nonumber
+\end{align}
+but $\langle\psi|-e\mathcal{E}\hat{Z}|\psi\rangle=\alpha\varepsilon_0\mathcal{E}$, hence we recover the expression for $\alpha$. Since $E_k\geq E_1$ $\forall k$, then
+\begin{align}
+    \alpha&\leq\frac{2e^2}{\varepsilon_0}\sum_{k\neq 0}\frac{|\langle k|\hat{Z}|0\rangle|^2}{E_1-E_0}\nonumber\\&=\frac{2e^2}{\varepsilon_0}\sum_{k\neq 0}\frac{\langle 0|\hat{Z}|k\rangle\langle k|\hat{Z}|0\rangle}{E_1-E_0}\nonumber\\&=\frac{2e^2}{\varepsilon_0}\frac{\langle 0|\hat{Z}^2|0\rangle}{E_1-E_0}\nonumber
+\end{align}
+where we have used completeness and $\langle 0|\hat{Z}|k=0\rangle=0$. Given $|0\rangle=(\pi a_0^3)^{-1/2}e^{-r/a_0}$, hence we have
+\begin{align}
+\langle 0|\hat{Z}^2|0\rangle&=\langle 0|r^2\cos^2\theta|0\rangle\nonumber\\&=\frac{1}{\pi a_0^3}\int_0^\pi \sin\theta\cos^2\theta d\theta\int_0^{2\pi}d\phi\int_0^\infty r^2r^2e^{-2r/a_0}dr\nonumber\\&=a_0^2\nonumber
+\end{align}
+For a Hydrogen atom, the energy difference is $E_1-E_0=\frac{3}{4}\frac{e^2}{8\pi\varepsilon_0a_0}$, so
+$$\alpha\leq\frac{2e^2}{\varepsilon_0}\frac{4}{3}\frac{8\pi\varepsilon_0a_0}{e^2}a_0^2=\frac{64}{3}\pi a_0^3=\frac{64}{3}\pi a(5.3\times10^{-11})^3=9.9\times10^{-30}m^3$$
+which is of the same order as the experimental value $\alpha=8.5\times10^{-30}m^3$.
+\end{ans}
+\newpage
+\begin{qns}[Degenerate perturbation theory of 2D simple harmonic motion]
+A particle of mass $m$ is constrained to move in the $xy$–plane such that the Hamiltonian is given by
+$$\hat{H}=\frac{1}{2m}(\hat{p}_x^2+\hat{p}_y^2)+\frac{1}{2}m\omega^2(\hat{x}^2+\hat{y}^2)+\lambda\hat{x}\hat{y}$$
+\begin{enumerate}[label=(\alph*)]
+\item Using raising and lowering operators show that for $\lambda=0$ the (unperturbed) energy eigenvalues can be described by the equation $E_{n_x,n_y}=(n_x+n_y+1)\hbar\omega$.
+\item For the ground state and first two excited states, describe the unperturbed eigenstates for the system in terms of one-dimensional harmonic oscillator eigenstates $|n_x\rangle$, $|n_y\rangle$. What are the degeneracies of each of these energy levels?
+\item For the case $\lambda\neq 0$, use degenerate perturbation theory to determine the energy splitting for the lowest energy degenerate level, as well as the first-order corrections to the wavefunctions.
+\end{enumerate}
+\end{qns}
+\begin{ans}\leavevmode
+\begin{enumerate}[label=(\alph*)]
+\item For $\lambda=0$, each term of the Hamiltonian is a 1D quantum harmonic oscillator of angular frequency $\omega$, i.e.
+$$H^{(0)}=\hat{H}(\lambda=0)=\hbar\omega(\hat{a}_x^\dag\hat{a}_x+\hat{a}_y^\dag\hat{a}_y+1)$$
+The unperturbed energy eigenvalues are
+$$E_{n_x,n_y}^{(0)}=\hbar\omega(n_x+n_y+1)$$
+\item The ground state is $|0,0\rangle$ with energy $\hbar\omega$. The first excited state ($n_x+n_y=1$) has a degeneracy of 2, i.e. the states $|1,0\rangle$ and $|0,1\rangle$ have the same energy $2\hbar\omega$. The second excited state ($n_x+n_y=2$) has a degeneracy of 3, i.e. the states $|2,0\rangle$, $|1,1\rangle$ and $|0,2\rangle$, with energy $3\hbar\omega$.
+\item The perturbation is
+$$\hat{\Delta}=\lambda\hat{x}\hat{y}=\lambda\frac{\hbar}{2m\omega}(\hat{a}_x^\dag+\hat{a}_x)(\hat{a}_y^\dag+\hat{a}_y)$$
+The lowest energy degenerate level has energy $E_1^{(0)}=2\hbar\omega$. The perturbation in the basis of these two degenerate states, i.e. $\{|1,0\rangle,|0,1\rangle\}$, will be
+$$\langle1,0|\hat{\Delta}|1,0\rangle=\lambda\langle1,0|\hat{x}\otimes\hat{y}|1,0\rangle=0=\langle0,1|\hat{\Delta}|0,1\rangle,\quad\langle0,1|\hat{\Delta}|1,0\rangle=\lambda\langle0,1|\hat{x}\otimes\hat{y}|1,0\rangle=\lambda\frac{\hbar}{2m\omega}=\langle1,0|\hat{\Delta}|0,1\rangle$$
+$$\implies\hat{\Delta}=\lambda\frac{\hbar}{2m\omega}\begin{pmatrix}0&1\\1&0\\\end{pmatrix}$$
+Diagonalize it to give the first order energy corrections:
+$$E^{(1)}_{2,\pm}=\pm\frac{\lambda\hbar}{2m\omega},\quad|n=1^{(0)}\rangle=\frac{1}{\sqrt{2}}\begin{pmatrix}1\\\pm1\\\end{pmatrix}=\frac{1}{\sqrt{2}}(|1,0\rangle\pm|0,1\rangle)$$
+The perturbation selects a particular combination of degenerate eigenvectors of $H^{(0)}$. The first order corrections to the state has mixing with the non-degenerate levels, i.e.
+$$|n=1^{(1)}\rangle=-\sum_{k\neq 1}\frac{\langle k^{(0)}|\hat{\Delta}|n=1^{(0)}\rangle}{E_k^{(0)}-E_{n=1}^{(0)}}|k^{(0)}\rangle$$
+We have
+\begin{align}
+    \hat{\Delta}|n=1^{(0)}\rangle&=\frac{\lambda}{\sqrt{2}}(\hat{x}\otimes\hat{y})(|1,0\rangle\pm|0,1\rangle)\nonumber\\&=\frac{\lambda}{\sqrt{2}}\frac{\hbar}{2m\omega}\bigg((\sqrt{2}|2\rangle+|0\rangle)\otimes|1\rangle+|1\rangle\otimes(\sqrt{2}|2\rangle+|0\rangle)\bigg)\nonumber\\&=\frac{\lambda\hbar}{2\sqrt{2}m\omega}\bigg(\sqrt{2}(|2,1\rangle\pm|1,2\rangle)+|0,1\rangle\pm|1,0\rangle\bigg)\nonumber
+\end{align}
+This gives rise to energy states with energy $4\hbar\omega$ ($|2,1\rangle,|1,2\rangle$). So the eigenstate at the first order correction, $|n=1^{(0)}\rangle+\lambda|n=1^{(1)}\rangle$, is
+$$\frac{1}{\sqrt{2}}(|1,0\rangle\pm|0,1\rangle)+\frac{\lambda\hbar\sqrt{2}/2\sqrt{2}m\omega}{2\hbar\omega-4\hbar\omega}(|2,1\rangle\pm|1,2\rangle)=\frac{1}{\sqrt{2}}(|1,0\rangle\pm|0,1\rangle)-\frac{\lambda}{4m\omega^2}(|2,1\rangle\pm|1,2\rangle)$$
+\end{enumerate}
+\end{ans}
+\newpage
+\subsection*{Variational principle}
+\begin{qns}[Variational analysis of 1D simple harmonic motion]
+Use a trial wavefunction of the form
+\begin{equation}
+\psi(x) = \begin{cases}
+A(a^2-x^2) &-a<x<a\\
+0 &\text{otherwise}
+\end{cases}\tag{8}
+\end{equation}
+to place an upper bound on the ground state energy of a one-dimensional harmonic oscillator having the potential $V(x)=m\omega^2x^2/2$, where $m$ is the mass of the particle and $\omega$ the natural frequency.\\[5pt]
+Compare your answer with the exact result, and comment. Why is the result slightly different to the actual ground-state energy?
+\end{qns}
+\begin{ans}
+Normalization gives
+$$1=\int_{-\infty}^\infty|\psi|^2dx=|A|^2\int_{-a}^a(x^2-a^2)^2dx=\frac{16}{15}|A|^2a^5\implies A=\sqrt{\frac{15}{16a^5}}$$
+Apply the Hamiltonian operator to the trial wavefunction:
+$$\hat{H}\psi=\bigg(-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2}+\frac{1}{2}m\omega^2x^2\bigg)(x^2-a^2)=A\bigg[\frac{\hbar^2}{m}+\frac{1}{2}m\omega^2x^2(a^2-x^2)\bigg]$$
+The energy expectation will be
+\begin{align}
+    \langle E\rangle&=\langle\psi|\hat{H}|\psi\rangle\nonumber\\&=|A|^2\int_{-a}^a(a^2-x^2)\bigg[\frac{\hbar^2}{m}+\frac{1}{2}m\omega^2(a^2x^2-x^4)\bigg]dx\nonumber\\&=\frac{15}{8}\bigg[\frac{2\hbar^2}{3ma^2}+\frac{4m\omega^2a^2}{105}\bigg]\nonumber
+\end{align}
+Minimize the energy expectation:
+$$\frac{\partial\langle E\rangle}{\partial a}=0\implies a^2=\sqrt{\frac{35}{2}}\frac{\hbar}{m\omega}\implies\langle E\rangle=\langle\psi|\hat{H}|\psi\rangle=\sqrt{\frac{5}{14}}\hbar\omega>\frac{1}{2}\hbar\omega$$
+as expected from variational principles, an upper bound of the ground state energy.
+\end{ans}
+\newpage
+\begin{qns}[Variational analysis]
+Use variational techniques to answer the following:
+\begin{enumerate}[label=(\alph*)]
+\item $E_1$ and $E_2$ are the ground state energies of a particle moving in attractive potentials $V_1(\mathbf{r})$ and $V_2(\mathbf{r})$, respectively. using the variational method, show that $E_1\leq E_2$ if $V_1(\mathbf{r})\leq V_2(\mathbf{r})$.\\[5pt]
+[Hint: Use the wavefunction of a particle moving in $V_2(\mathbf{r})$ as a trial wavefunction for the potential $V_1(\mathbf{r})$.]
+\item Consider a particle moving in a localized one-dimensional attractive potential $V(x)$, i.e. a potential such that $V (x)\leq 0$ for all $x$, and $V(x)\rightarrow 0$ as $|x|\rightarrow\infty$. Use the variational principle with trial function $A\exp(-\lambda x^2)$ to show that the upper bound on the ground state energy is negative, and hence that for any such potential at least one bound state must exist.
+\end{enumerate}
+\end{qns}
+\begin{ans}\leavevmode
+\begin{enumerate}[label=(\alph*)]
+\item $E_1$ and $E_2$ satisfy
+$$\hat{H}_1\psi_1=E_1\psi_1,\quad\hat{H}_2\psi_2=E_2\psi_2$$
+for some $\psi_1$ and $\psi_2$. We have
+$$\hat{H}_1=\hat{H}_2-V_2(\mathbf{r})+V_1(\mathbf{r})=\hat{H}_2+\Delta V(\mathbf{r})$$
+where $\Delta V(\mathbf{r})=V_1(\mathbf{r})-V_2(\mathbf{r})\leq 0$. Now,
+$$E_1\leq\langle\psi_2|\hat{H}_1|\psi_2\rangle=\langle\psi_2|\hat{H}_2|\psi_2\rangle+\langle\psi_2|\Delta V|\psi_2\rangle\leq E_2$$
+\item Guess the ansatz $\psi=Ae^{-\lambda x^2}$. Normalization gives
+$$1=\int_{-\infty}^\infty|\psi|^2dx=|A|^2\int_{-\infty}^\infty e^{-2\lambda x^2}dx=|A|^2\sqrt{\frac{\pi}{2\lambda}}$$
+The energy expectation will be
+$$\langle\psi|\hat{H}|\psi\rangle=\frac{\hbar^2\lambda}{2m}+\sqrt{\frac{2\lambda}{\pi}}\int_{-\infty}^\infty V(x)e^{-2\lambda x^2}dx$$
+where $\int_{-\infty}^\infty x^2e^{-2\lambda x^2}dx=\frac{1}{4\lambda}\sqrt{\frac{\pi}{2\lambda}}$. Extremize the energy expectation:
+$$0=\frac{\partial\langle H\rangle}{\partial\lambda}=\frac{\hbar^2}{2m}+\frac{1}{2\lambda}\sqrt{\frac{2\lambda}{\pi}}\int_{-\infty}^\infty V(x)e^{-2\lambda x^2}dx+\sqrt{\frac{2\lambda}{\pi}}\int_{-\infty}^\infty V(x)(-2x^2)e^{-2\lambda x^2}dx$$
+Hence, the minimized expectation is
+$$\langle\psi|\hat{H}|\psi\rangle=-\frac{\hbar^2\lambda}{2m}+2\lambda\sqrt{\frac{2\lambda}{\pi}}\int_{-\infty}^\infty V(x)(2x^2)e^{-2\lambda x^2}dx\geq E_0$$
+which is an upper bound, typical from the result obtained from the variational principle. But $V(x)\leq 0$, so $E_0\leq 0$ and at least one bound state must exists.
+\end{enumerate}
+\end{ans}
+\newpage
+\subsection*{Time dependent perturbation theory}
+\begin{qns}[Time-dependent perturbation theory]
+As shown in lectures, the probability that a system initially prepared in energy eigenstate $\psi_0$ at time $t = 0$ is subsequently found in a state $\psi_n$ when a weak perturbation $V(t)$ is applied is given approximately by $|c_n(t)|^2$ where
+$$c_n(t)=\frac{1}{i\hbar}\int_0^te^{i(E_n-E_0)t'/\hbar}\langle\psi_n|\hat{V}(t')|\psi_0\rangle dt'$$
+where the perturbation $\hat{V}(t')$ is the Schr\"{o}dinger picture.
+\begin{enumerate}[label=(\roman*)]
+\item At times $t>0$, an electric field $\mathcal{E}_z=\mathcal{E}_0\exp(-t/\tau)$ is applied to a hydrogen atom, initially prepared in its ground state. Working to first order in the electric field, show that, after a long time, $t>>\tau$ , the probability of finding the atom in the 2s state is zero.
+\item Likewise, show that the probability of finding the atom in the $2p_0$ state is given by
+$$P(2p_0)=|c_{2p_0}(\infty)|^2=\frac{e^2\mathcal{E}_0^2a_0^22^{15}}{3^{10}}\frac{1}{\Delta E^2+\hbar^2/\tau^2}$$
+\end{enumerate}
+\end{qns}
+\begin{ans}\leavevmode
+\begin{enumerate}[label=(\roman*)]
+\item The perturbation operator is
+$$\hat{V}(t)=e\hat{Z}\mathcal{E}_z=e\hat{Z}\mathcal{E}_0e^{-t/\tau}$$
+The amplitude for transition between 1s and 2s orbital is
+$$c_{2s}(t)=\frac{e\mathcal{E}_0}{i\hbar}\int_0^te^{i(E_{2s}-E_{1s})t'/\hbar}e^{-t'/\tau}\langle\psi_{2s}|\hat{Z}|\psi_{1s}\rangle dt'$$
+but $\langle\psi_{2s}|\hat{Z}|\psi_{1s}\rangle=0$, since $\psi_{1s}$, $\psi_{2s}$ have even parity whereas $\hat{Z}$ has odd parity. Hence, the probability of finding the atom in the 2s state, $|c_{2s}(t)|^2$, is zero.
+\item Now, do the same for the $2p_0$ orbital:
+\begin{align}
+    \langle\psi_{2p_0}|\hat{Z}|\psi_{1s}\rangle&=\bigg(\frac{1}{32\pi a_0^5}\bigg)^{1/2}\bigg(\frac{1}{\pi a_0^3}\bigg)^{1/2}\int_0^{a_0} r^2~r^2e^{-r/a_0}e^{-r/2a_0}dr\int_{-1}^1\cos^2\theta~d\cos\theta\int_0^{2\pi}d\phi\nonumber\\&=\frac{1}{\sqrt{32}\pi a_0^4}\frac{4!}{(3/2a_0)^5}\frac{4\pi}{3}\nonumber\\&=\frac{256a_0}{243\sqrt{2}}\nonumber 
+\end{align}
+The amplitude for transition between 1s and 2p orbital is
+$$c_{2p_0}(\infty)=\frac{e\mathcal{E}_0}{i\hbar}\int_0^\infty e^{i(E_{2p_0}-E_{1s})t'/\hbar}e^{-t'/\tau}\langle\psi_{2p_0}|\hat{Z}|\psi_{1s}\rangle dt'=\frac{e\mathcal{E}_0}{i\hbar}\frac{1}{(1/\tau)-i\Delta E/\hbar}\frac{256 a_0}{243\sqrt{2}}$$
+The probability for transition will then be
+$$P(2p_0)=|c_{2p_0}(\infty)|^2=\frac{e^2\mathcal{E}_0^2a_0^2}{2i\hbar}\bigg(\frac{2^{8}}{3^5}\bigg)^2\frac{1}{(\Delta E)^2+\hbar^2/\tau^2}$$
+\end{enumerate}
+\end{ans}
+\newpage
+\begin{qns}[Time-dependent perturbation theory of simple harmonic motion]
+A one-dimensional harmonic oscillator with Hamiltonian $\hat{H}_0=(\hat{p}_x^2/2m)+\frac{1}{2}m\omega^2\hat{x}^2$, initially in the ground state, is subjected to the perturbation
+\begin{equation*}
+\hat{H}'(t) = \begin{cases}
+0 &t<0\text{ and }t>T\\
+\lambda\hat{x}(1-t/T) &0\leq t\leq T
+\end{cases}
+\end{equation*}
+Find, to first order in $\lambda$, the probability that the oscillator is in the first excited state at time $t > T$.\\[5pt]
+Verify that for $\omega T>>1$ this probability approaches the value $|\langle\psi_1|\psi'_0\rangle|^2$ where $|\psi'_0\rangle$ is the ground state for the Hamiltonian $\hat{H}_0+\lambda\hat{x}$.\\[5pt]
+The ground and first excited states have the wavefunctions:
+$$\psi_0(x)=\bigg(\frac{m\omega}{\pi\hbar}\bigg)^{1/4}\exp\bigg(-\frac{m\omega}{2\hbar}x^2\bigg),\quad\psi_1(x)=\bigg(\frac{2m\omega}{\hbar}\bigg)^{1/2}x\psi_0(x)$$
+\end{qns}
+\begin{ans}
+To find the probability that the oscillator is in the first excited state at time $t>T$ (after being at the ground state at $t=0$), we first compute
+\begin{align}
+    \langle\psi_1|\hat{H}'(t')|\psi_0\rangle&=\int_{-\infty}^\infty\bigg(\frac{2m\omega}{\hbar}\bigg)^{1/2}x\psi_0^2(x)\lambda x\bigg(1-\frac{t'}{T}\bigg)dx\nonumber\\&=\int_{-\infty}^\infty\sqrt{\frac{2m\omega}{\hbar}}\sqrt{\frac{m\omega}{\pi\hbar}}x^2e^{-m\omega x^2/\hbar}\lambda\bigg(1-\frac{t'}{T}\bigg)dx\nonumber\\&=\sqrt{\frac{\hbar}{2m\omega}}\lambda\bigg(1-\frac{t'}{T}\bigg)\nonumber
+\end{align}
+where $\int_{-\infty}^\infty x^2e^{-m\omega x^2/\hbar}dx=(\frac{\hbar}{2m\omega})^{3/2}\sqrt{2\pi}$. So, when $t>T$:
+\begin{align}
+    c_1(t)&=\frac{1}{i\hbar}\int_0^Te^{i\hbar\omega t'/\hbar}\sqrt{\frac{\hbar}{2m\omega}}\lambda\bigg(1-\frac{t'}{T}\bigg)dt'\nonumber\\&=\frac{\lambda}{i\hbar}\sqrt{\frac{\hbar}{2m\omega}}\bigg[\frac{1}{i\omega}[e^{i\omega T}-1]-\frac{1}{T}\int_0^Tt'e^{i\omega t'}dt'\bigg]\nonumber\\&=\frac{\lambda}{i\hbar}\sqrt{\frac{\hbar}{2m\omega}}\bigg[\frac{e^{i\omega T}-1}{i\omega}-\frac{1}{T}\bigg[\frac{t'}{i\omega}e^{i\omega t'}\bigg]_0^T+\frac{1}{T}\int_0^Te^{i\omega t'}\frac{1}{i\omega}dt'\bigg]\nonumber\\&=\frac{\lambda}{i\hbar}\sqrt{\frac{\hbar}{2m\omega}}\frac{1}{\omega^2T}\bigg[\frac{i}{\omega}-\frac{1}{\omega^2T}(e^{i\omega T}-1)\bigg]\nonumber\\&=\frac{\lambda}{i\hbar}\sqrt{\frac{\hbar}{2m\omega}}\frac{1}{\omega^2T}[1-\cos\omega T+i(\omega T-\sin\omega T)]\nonumber\\\implies|c_1|^2&=\frac{\lambda^2}{2m\hbar\omega}\frac{1}{\omega^4T^2}\bigg[(1-\cos\omega T)^2+(\omega T-\sin\omega T)^2\bigg]=\frac{\lambda^2}{2m\omega^5\hbar T^2}[2-\cos\omega T-2\omega T\sin\omega T+\omega^2T^2]\nonumber
+\end{align}
+For $\omega T>>1$, we have $\omega^2T^2$ to dominate, hence $|c_1|^2\rightarrow\frac{\lambda^2}{2m\hbar\omega^3}$. For a time-independent perturbation $\hat{H}'=\lambda\hat{x}=\lambda\sqrt{\frac{\hbar}{2m\omega}}(\hat{a}^\dag+\hat{a})$, we have the corrected eigenstate, at first order, to be
+$$|\psi_0'\rangle=|\psi_0\rangle+\sum_{k\neq 0}\frac{\langle\psi_k|\hat{H}'|\psi_0\rangle}{E_0-E_k}|\psi_k\rangle$$
+The numerator in the fraction is
+$$\lambda\sqrt{\frac{\hbar}{2m\omega}}\langle\psi_k|\hat{a}^\dag+\hat{a}|\psi_0\rangle=\lambda\sqrt{\frac{\hbar}{2m\omega}}\langle\psi_k|\hat{a}^\dag|\psi_0\rangle=\lambda\sqrt{\frac{\hbar}{2m\omega}}\delta_{k,1}$$
+So we have
+$$|\psi_0'\rangle=|\psi_0\rangle+\frac{\lambda\sqrt{\hbar/2m\omega}}{-\hbar\omega}|\psi_1\rangle=|\psi_0\rangle-\lambda\sqrt{1/2m\hbar\omega^3}|\psi_1\rangle\implies|\langle\psi_0'|\psi_1\rangle|^2=\frac{\lambda^2}{2m\hbar\omega^3}=\lim_{\omega T>>1}|c_1|^2$$
+\end{ans}
+\newpage
+\section{Problem Sheet 4}
+\subsection*{Spin dynamics}
+\begin{qns}[Time evolution of spin]
+A spin 1/2 particle has gyromagnetic ratio $\gamma$, so that its magnetic moment is given by $\hat{\boldsymbol{\Gamma}}=\gamma\mathbf{\hat{S}}$ where $\mathbf{\hat{S}}$ is the spin operator.\\[5pt]
+Using Schr\"{o}dinger’s equation, show that the equation of motion for the spin state $|\psi(t)\rangle$ of such a particle in a magnetic field $\mathbf{B}$ is
+$$-\frac{1}{2}\gamma(\mathbf{B}\cdot\boldsymbol{\hat{\sigma}})|\psi(t)\rangle=i\frac{\partial}{\partial t}|\psi(t)\rangle$$
+where $\boldsymbol{\hat{\sigma}}$ is a vector with the Pauli matrices $\hat{\sigma}_i$ as components.\\[5pt]
+$\mathbf{B}$ is a constant field in the z-direction with magnitude $B_0$, and we choose
+$$|\psi(0)\rangle = \cos(\theta/2)|\uparrow\rangle + \sin(\theta/2)|\downarrow\rangle$$
+By representing the spin states as column vectors, show that at time $t$,
+$$|\psi(t)\rangle = \cos(\theta/2)\exp(i\omega_0t/2)|\uparrow\rangle + \sin(\theta/2)\exp(−i\omega_0t/2)|\downarrow\rangle$$
+where $\omega_0=\gamma B_0$, and find the expectation values of the components of the magnetic moment $\boldsymbol{\hat{\mu}}$ at time $t$.\\[5pt]
+Using the general result
+$$\frac{d}{dt}\langle\hat{A}\rangle=\frac{i}{\hbar}\langle[\hat{H},\hat{A}]\rangle$$
+for the time evolution of the expectation value of an operator $\hat{A}$, show that for an arbitrarily varying magnetic field $\mathbf{B}(t)$ the magnetic dipole moment operator satisfies
+$$\frac{d}{dt}\langle\boldsymbol{\hat{\mu}}\rangle=\gamma\langle\boldsymbol{\hat{\mu}}\times\mathbf{B}(t)\rangle$$
+and demonstrate explicitly that the expectation values found above for the constant field satisfy this relation.\\[5pt]
+Interpret your results physically.
+\end{qns}
+\begin{ans}
+Schr\"{o}dinger's equation gives
+$$0=(\hat{H}-i\hbar\frac{\partial}{\partial t})|\psi(t)\rangle=\bigg(-\frac{\hbar}{2}\gamma(\mathbf{B}\cdot\boldsymbol{\hat{\sigma}})|\psi(t)\rangle-i\hbar\frac{\partial}{\partial t}\bigg)|\psi(t)\rangle$$
+where the Hamiltonian is
+$$\hat{H}=-\boldsymbol{\hat{\Gamma}}\cdot\mathbf{B}=-\gamma\mathbf{\hat{S}}\cdot\mathbf{B}=-\gamma\frac{\hbar}{2}\mathbf{B}\cdot\boldsymbol{\hat{\sigma}}$$
+We are given $\mathbf{B}=B_0\mathbf{\hat{z}}$, so the LHS is just $B_0\sigma_z$. Since $|\psi(t)\rangle$ is a two-level state, we can write it in terms of the physical spin basis $\{|\uparrow\rangle,|\downarrow\rangle\}$. We have
+$$-\frac{1}{2}\gamma B_0\begin{pmatrix}1&0\\0&-1\\\end{pmatrix}\begin{pmatrix}a(t)\\b(t)\\\end{pmatrix}=i\frac{\partial}{\partial t}\begin{pmatrix}a(t)\\b(t)\\\end{pmatrix}\implies a(t)=a(0)e^{i\omega_0t/2},~b(t)=b(0)e^{-i\omega_0t/2}$$
+where a generic two-level state can be written as $|\psi(0)\rangle=a(0)|\uparrow\rangle+b(0)|\downarrow\rangle=\cos(\theta/2)|\uparrow\rangle+\sin(\theta/2)|\downarrow\rangle$ for some $\theta$. In the Schr\"{o}dinger's picture, $|\psi(t)\rangle=e^{-i\hat{H}t/\hbar}|\psi(0)\rangle$. Hence,
+$$|\psi(t)\rangle=a(t)|\uparrow\rangle+b(t)|\downarrow\rangle=\cos(\theta/2)e^{i\omega_0t/2}|\uparrow\rangle+\sin(\theta/2)e^{-i\omega_0t/2}|\downarrow\rangle,\quad\omega_0=\gamma B_0$$
+The expectation values of the magnetic moment are
+$$\langle\mu_x\rangle=\gamma\frac{\hbar}{2}\begin{pmatrix}a^*&b^*\\\end{pmatrix}\begin{pmatrix}0&1\\1&0\\\end{pmatrix}\begin{pmatrix}a\\b\\\end{pmatrix}=\gamma\frac{\hbar}{2}\cos\frac{\theta}{2}\sin\frac{\theta}{2}(e^{-i\omega_0t}+e^{i\omega_0t})=\gamma\frac{\hbar}{2}\sin\theta\cos\omega_0t$$
+$$\langle\mu_y\rangle=i\gamma\frac{\hbar}{2}\begin{pmatrix}a^*&b^*\\\end{pmatrix}\begin{pmatrix}0&-1\\1&0\\\end{pmatrix}\begin{pmatrix}a\\b\\\end{pmatrix}=i\gamma\frac{\hbar}{2}\cos\frac{\theta}{2}\sin\frac{\theta}{2}(-e^{-i\omega_0t}+e^{i\omega_0t})=-\gamma\frac{\hbar}{2}\sin\theta\sin2\omega_0t$$
+$$\langle\mu_z\rangle=\gamma\frac{\hbar}{2}\begin{pmatrix}a^*&b^*\\\end{pmatrix}\begin{pmatrix}1&0\\0&-1\\\end{pmatrix}\begin{pmatrix}a\\b\\\end{pmatrix}=\gamma\frac{\hbar}{2}(\cos^2(\theta/2)-\sin^2(\theta/2)=\gamma\frac{\hbar}{2}\cos\theta$$
+Using Heisenberg's equation of motion for the expectation value of an operator, we have
+\begin{align}
+\frac{d}{dt}\langle\boldsymbol{\hat{\mu}}\rangle&=\frac{i}{\hbar}\langle[-\gamma\boldsymbol{\hat{S}}\cdot\mathbf{B},\boldsymbol{\hat{\mu}}]\rangle\nonumber\\&=\frac{i\gamma^2}{\hbar}\langle[-\boldsymbol{\hat{S}}\cdot\mathbf{B},\boldsymbol{\hat{S}}]\rangle\nonumber\\\frac{d}{dt}\langle\hat{\mu}_i\rangle&=\frac{i\gamma^2}{\hbar}\langle-(\hat{S}_j B_j+\hat{S}_kB_k+\hat{S}_iB_i)\hat{S}_i+\hat{S}_i(\hat{S}_j B_j+\hat{S}_kB_k+\hat{S}_iB_i)\rangle\nonumber\\&=\frac{i\gamma^2}{\hbar}\langle[\hat{S}_i,\hat{S}_j]B_j+[\hat{S}_i,\hat{S}_k]B_k\rangle\nonumber\\&=\frac{i\gamma^2}{\hbar}\langle i\hbar\hat{S}_k\varepsilon_{ijk}B_j+i\hbar\varepsilon_{ikj}\hat{S}_jB_k\rangle\nonumber\\&=\gamma^2\langle(\boldsymbol{\hat{S}}\times\mathbf{B})_i\rangle\nonumber\\&=\gamma\langle\boldsymbol{\hat{\mu}}\times\mathbf{B}(t)\rangle_i\nonumber
+\end{align}
+The magnetic field produce a constant torque in the $z$-component which causes the magnetic moment $\boldsymbol{\hat{\mu}}$ to rotate around the $x$-$y$ plane at a constant angular velocity $\omega_0=\gamma B_0$, i.e. precess around the magnetic field. The $z$-component of the moment is fixed but the $x$ and $y$ components vary in a way that the magnitude of the magnetic moment's expectation value is constant.
+\end{ans}
+\newpage
+\subsection*{Quantizing electromagnetic fields}
+\begin{qns}[Photon momentum]
+The total linear momentum operator $\hat{\mathbf{P}}$ for an electromagnetic field is
+$$\hat{\mathbf{P}}=\sum_{\mathbf{k},\lambda}\hbar\mathbf{k}\hat{a}^\dag_{\mathbf{k},\lambda}\hat{a}_{\mathbf{k},\lambda}$$
+Describe each of the terms in this expression. On what vector space does it act?\\[5pt]
+By generating a single photon state from the vacuum, show that a photon of wave vector $\mathbf{k}$ (in any polarisation state $\lambda$) has linear momentum $\hbar\mathbf{k}$.\\[5pt]
+Similarly, the intrinsic spin angular momentum operator $\mathbf{\hat{J}}_s$ is given by
+$$\mathbf{\hat{J}}_s=\hbar\sum_{\mathbf{k}}\frac{\mathbf{k}}{|\mathbf{k}|}\bigg[\hat{a}_{\mathbf{k},L}^\dag\hat{a}_{\mathbf{k},L}-\hat{a}_{\mathbf{k},R}^\dag\hat{a}_{\mathbf{k},R}\bigg]$$
+Again by generating a single photon state from the vacuum, show that for left-handed (right-handed) photons, the spin is oriented parallel to the photon direction of motion, with spin projection $+\hbar$ ($-\hbar$).
+\end{qns}
+\begin{ans}
+Each $a_{\mathbf{k},\lambda}$ represents a Fourier mode for a photon of wavevector $\mathbf{k}$ and polarisation state $\lambda$. There are two non-parallel polarisation states that span the space of polarization states.\\[5pt]
+We promote these Fourier modes to quantum operators which behaves like the creation $\hat{a}^\dag$ and annihilation $\hat{a}$ operators of a harmonic oscillator. These operators create and destroy a photon packet of momentum $\mathbf{k}$ and polarisation $\lambda$. Each of these quantum states are elements of the Fock space. $\hat{a}^\dag_{\mathbf{k},\lambda}\hat{a}_{\mathbf{k},\lambda}=\hat{n}_{\mathbf{k},\lambda}$ is the number operator which corresponds to the observable, the number of photons of mode $\mathbf{k}$ and polarisation $\lambda$ present in the electromagnetic field.\\[5pt]
+A single photon state is represented as $|\mathbf{k},\lambda\rangle=\hat{a}^\dag_{\mathbf{k},\lambda}|0\rangle$. Apply the momentum operator $\mathbf{\hat{P}}$:
+$$\mathbf{\hat{P}}|\mathbf{k},\lambda\rangle=\mathbf{\hat{P}}\hat{a}^\dag_{\mathbf{k},\lambda}|0\rangle=\bigg(\sum_{\mathbf{k'},\lambda'}\hbar\mathbf{k'}\hat{a}^\dag_{\mathbf{k'},\lambda'}\hat{a}_{\mathbf{k'},\lambda'}\bigg)\hat{a}^\dag_{\mathbf{k},\lambda}|0\rangle$$
+The operators satisfy the canonical commutation relations
+$$\hat{a}_{\mathbf{k},\lambda},\hat{a}^\dag_{\mathbf{k'},\lambda'}=\delta_{\mathbf{k'},\mathbf{k}}\delta_{\lambda'\lambda}+\hat{a}^\dag_{\mathbf{k},\lambda}\hat{a}_{\mathbf{k'},\lambda'}$$
+Since $\hat{a}_{\mathbf{k'},\lambda'}|0\rangle=0$, then $\hat{a}_{\mathbf{k'},\lambda'}\hat{a}^\dag_{\mathbf{k'},\lambda}|0\rangle=\delta_{\mathbf{k'},\mathbf{k}}\delta_{\lambda',\lambda}|0\rangle$. We then have
+$$\mathbf{\hat{P}}|\mathbf{k},\lambda\rangle=\sum_{\mathbf{k'},\lambda'}\hbar\mathbf{k'}\hat{a}^\dag_{\mathbf{k'},\lambda'}\delta_{\mathbf{k'},\mathbf{k}}\delta_{\lambda',\lambda}|0\rangle=\hbar\mathbf{k}\hat{a}_{\mathbf{k},\lambda}|0\rangle=\hbar\mathbf{k}|\mathbf{k},\lambda\rangle$$
+A right-handed single photon state is $|\mathbf{k},R\rangle=\hat{a}^\dag_{\mathbf{k},R}|0\rangle$. Apply the intrinsic angular momentum operator $\hat{J}_s$:
+\begin{align}
+    \hat{J}_s|\mathbf{k},R\rangle&=\hat{J}_s\hat{a}^\dag_{\mathbf{k},R}|0\rangle\nonumber\\&=\hbar\sum_{\mathbf{k'}}\frac{\mathbf{k'}}{|\mathbf{k'}|}(\hat{a}^\dag_{\mathbf{k'},L}\hat{a}_{\mathbf{k'},L}-\hat{a}^\dag_{\mathbf{k'},R}\hat{a}_{\mathbf{k'},R})\hat{a}^\dag_{\mathbf{k},R}|0\rangle\nonumber\\&=-\hbar\sum_{\mathbf{k'}}\frac{\mathbf{k'}}{|\mathbf{k'}|}\hat{a}^\dag_{\mathbf{k'},R}\hat{a}_{\mathbf{k'},R}\hat{a}^\dag_{\mathbf{k},R}|0\rangle\nonumber
+\end{align}
+where $[\hat{a}_{\mathbf{k},L}\hat{a}^\dag_{\mathbf{k},R}]=0$ and $\hat{a}_{\mathbf{k'},L}|0\rangle=0$. Again, from the canonical commutation relation and $\hat{a}_{\mathbf{k'},R}|0\rangle=0$, then
+$$\hat{J}_s|\mathbf{k},R\rangle=-\hbar\sum_{\mathbf{k'}}\frac{\mathbf{k'}}{|\mathbf{k'}|}\hat{a}^\dag_{\mathbf{k'},R}(\delta_{\mathbf{k'},\mathbf{k}}\delta_{\lambda',\lambda}+\hat{a}^\dag_{\mathbf{k},R}\hat{a}_{\mathbf{k'},R})|0\rangle=-\hbar\frac{\mathbf{k}}{|\mathbf{k}|}\hat{a}^\dag_{\mathbf{k},R}|0\rangle\implies\bigg(\frac{\mathbf{k}}{|\mathbf{k}|}\cdot\hat{J}_s\bigg)|\mathbf{k},R\rangle=-\hbar|\mathbf{k},R\rangle$$
+The right-handed photons thus carry intrinsic angular momentum $-\hbar$ projected along the photon direction. Similarly, for a left-handed photon $|\mathbf{k},L\rangle=\hat{a}^\dag_{\mathbf{k},L}|0\rangle$.
+$$\hat{J}_s|\mathbf{k},L\rangle=\hbar\sum_{\mathbf{k'}}\frac{\mathbf{k'}}{|\mathbf{k'}|}\hat{a}^\dag_{\mathbf{k'},L}(\delta_{\mathbf{k'},\mathbf{k}}\delta_{\lambda',\lambda}+\hat{a}^\dag_{\mathbf{k},L}\hat{a}_{\mathbf{k'},L})|0\rangle=\hbar\frac{\mathbf{k}}{|\mathbf{k}|}\hat{a}^\dag_{\mathbf{k},L}|0\rangle\implies\bigg(\frac{\mathbf{k}}{|\mathbf{k}|}\cdot\hat{J}_s\bigg)|\mathbf{k},L\rangle=\hbar|\mathbf{k},L\rangle$$
+which carries intrinsic angular momentum $+\hbar$ projected along the photon direction.
+\end{ans}
+\newpage
+\subsection*{Coherent states}
+\begin{qns}[Time evolution of coherent states]
+Consider the time evolution of a coherent state in the case where the Hamiltonian is time-independent. Using the time evolution operator $\hat{U}(t)$, show that a coherent state at $t = 0$ always evolves into another coherent state at some subsequent time.\\[5pt]
+If $|\beta\rangle$ is a coherent state, and the creation and annihilation operators are in the Heisenberg picture, derive expressions for the following:
+\begin{enumerate}[label=(\alph*)]
+\item $\langle\beta|\hat{a}(t)|\beta\rangle$ and $\langle\beta|\hat{a}^\dag(t)|\beta\rangle$
+\item $\langle\beta|\hat{x}(t)|\beta\rangle$ where $\hat{x}(t)=\sqrt{\hbar/2m\omega}(\hat{a}(t)+\hat{a}^\dag(t))$
+\item $\langle\beta|\hat{p}(t)|\beta\rangle$ where $\hat{p}(t)=-i\sqrt{m\hbar\omega/2}(\hat{a}(t)-\hat{a}^\dag(t))$
+\end{enumerate}
+Show that a coherent state is a minimum uncertainty state at all time.\\[5pt]
+Using these results, explain why coherent states are the quantum mechanical equivalents
+of classical simple harmonic motion.
+\end{qns}
+\begin{ans}
+The coherent state is obtained by displacing the ground state, i.e. $|\beta\rangle=D(\beta)|0\rangle$, where $D(\beta)=\exp(\beta\hat{a}^\dag-\beta^*\hat{a})$ is the displacement operator. The coherent state is an eigenstate of the annihilation operator $\hat{a}|\beta\rangle=\beta|\beta\rangle$. Since the number basis is complete, we may write a coherent state in terms of the number basis $|\beta(t)\rangle=\sum_nc_n(t)|n\rangle$. Since $c_n(t)=e^{-i\hbar\omega(n+0.5)t/\hbar}c_n(0)$ and from the eigenvector equation, we thus obtain $c_n(t)=\frac{\beta^n}{\sqrt{n!}}e^{-i\omega t/2}c_0(0)$. We can then show $\hat{a}|\beta(t)\rangle\propto|\beta(t)\rangle$. Alternatively, when the Hamiltonian is time independent, the time evolution operator is simply $U(t)=\exp(-iHt/\hbar)$. The coherent state $|\beta\rangle$ will evolve into
+\begin{align}
+    |\beta,t\rangle&=e^{-iHt/\hbar}|\beta\rangle\nonumber\\&=e^{-iHt/\hbar}e^{\beta\hat{a}^\dag-\beta^*\hat{a}}|0\rangle\nonumber\\&=\bigg(e^{-iHt/\hbar}e^{\beta\hat{a}^\dag-\beta^*\hat{a}}e^{iHt/\hbar}\bigg)e^{-iHt/\hbar}|0\rangle\nonumber\\&=\exp(\beta\hat{a}^\dag(-t)-\beta^*\hat{a}(-t))e^{-i\omega t/2}|0\rangle\nonumber\\&=e^{-i\omega t/2}\exp\bigg(\beta e^{-i\omega t}\hat{a}^\dag-\beta^*e^{i\omega t}\hat{a}\bigg)|0\rangle\nonumber\\&=e^{-i\omega t/2}|e^{-i\omega t}\beta\rangle\nonumber
+\end{align}
+but $|e^{-i\omega t}\beta|^2=|\beta|^2$, so $|e^{-i\omega t}\beta\rangle$ is also a coherent state. $|\beta,t\rangle$ is a coherent state since $e^{-i\omega t/2}$ is an irrelevant phase factor.
+\begin{enumerate}[label=(\alph*)]
+\item We have $\hat{a}(t)=e^{-i\omega t}\hat{a}$ and $\hat{a}^\dag(t)=e^{i\omega t}\hat{a}^\dag$. So
+$$\langle\beta|\hat{a}(t)|\beta\rangle=\langle\beta|\hat{a}|\beta\rangle e^{-i\omega t}=\beta e^{-i\omega t},\quad\langle\beta|\hat{a}^\dag(t)|\beta\rangle=(\hat{a}(t)|\beta\rangle)^\dag|\beta\rangle= e^{i\omega t}\beta^*$$
+\item 
+$$\langle\beta|\hat{x}(t)|\beta\rangle=\sqrt{\frac{\hbar}{2m\omega}}(\langle\beta|\hat{a}(t)|\beta\rangle+\langle\beta|\hat{a}^\dag(t)|\beta\rangle)=\sqrt{\frac{\hbar}{2m\omega}}(\beta e^{-i\omega t}+\beta^*e^{i\omega t})=\sqrt{\frac{\hbar}{2m\omega}}2\text{Re}[\beta e^{-i\omega t}]$$
+\item 
+$$\langle\beta|\hat{p}(t)|\beta\rangle=-i\sqrt{m\hbar\omega/2}(\beta e^{-i\omega t}-\beta^*e^{i\omega t})=-i\sqrt{m\hbar\omega/2}~2i\text{Im}[\beta e^{-i\omega t}]$$
+\end{enumerate}
+Shifting the time dependence to the states (where we have shown $|\beta(t)\rangle$ is also a coherent state):
+$$(\Delta x)^2=\langle\beta|\hat{x}^2(t)|\beta\rangle-(\langle\beta|\hat{x}(t)|\beta\rangle)^2=\langle\beta,t|\hat{x}^2|\beta,t\rangle-(\langle\beta,t|\hat{x}|\beta,t\rangle)^2=\frac{\hbar}{2m\omega},\quad (\Delta p)^2=\frac{1}{2}m\hbar\omega$$
+The Heisenberg uncertainty for a coherent state is saturated for all times:
+$$\Delta x\Delta p=\sqrt{\frac{\hbar^2m\omega}{4m\omega}}=\hbar/2$$
+The state can be related to classical solutions by a particle oscillating with an amplitude $\beta$ at constant angular frequency $\omega$, akin to the classical simple harmonic motion, i.e. write $\beta=|\beta|e^{i\theta}$, we have $x(t)=\sqrt{\frac{2\hbar}{m\omega}}\text{Re}[e^{-i\omega t}\beta]=\sqrt{\frac{2\hbar}{m\omega}}|\beta|\cos(-\omega t+\theta)$. Similarly, $p(t)=\sqrt{2m\hbar\omega}|\beta|\sin(-\omega t+\theta)$.
+\end{ans}
+\newpage
+\begin{qns}[Creating coherent states]
+Show that
+$$\frac{\partial}{\partial\beta}\bigg(e^{-\beta\hat{a}^\dag}\hat{a}e^{\beta\hat{a}^\dag}\bigg)=1$$
+By subsequently integrating the result, show that
+$$e^{-\beta\hat{a}^\dag}\hat{a}e^{\beta\hat{a}^\dag}=\beta+\hat{a}$$
+Using this expression, show that $|\beta\rangle=Ne^{\beta\hat{a}^\dag}|0\rangle$ is a coherent state, i.e. $\hat{a}|\beta\rangle=\beta|\beta\rangle$, where $N$ is a normalisation factor. Show that $N$ is given by $N=e^{-|\beta|^2/2}$.\\[5pt]
+Why is $e^{\beta\hat{a}^\dag}$ sometimes called the `displacement operator'.\\[5pt]
+Calculate the expectation values, $x_0=\langle\hat{x}\rangle$ and $p_0=\langle\hat{p}\rangle$ with respect to $|\beta\rangle$ and, by considering $\langle\hat{x}^2\rangle$ and $\langle\hat{p}^2\rangle$, show that
+$$(\Delta p)^2(\Delta x)^2=\frac{\hbar^2}{4}$$
+where $(\Delta p)^2=\langle(\hat{p}-\langle\hat{p}\rangle)^2\rangle$ (and similarly $(\Delta x)^2$).\\[5pt]
+[Hint: Remember how the creation and annihilation operators are related to the phase space operators $\hat{x}$ and $\hat{p}$. Also, note that taking the Hermitian conjugate of the eigenvalue equation $\hat{a}|\beta\rangle=\beta|\beta\rangle$ leads to the relation $\langle\beta|\hat{a}^\dag=\langle\beta|\beta^*$.]\\[5pt]
+Show that the eigenvalue equation $\hat{a}|\beta\rangle=\beta|\beta\rangle$ translates to the equation
+$$\sqrt{\frac{m\omega}{2\hbar}}\bigg(x+\frac{\hbar}{m\omega}\frac{\partial}{\partial x}\bigg)\psi(x)=\beta\psi(x)$$
+for the coordinate representation, $\psi(x)$, of the coherent state. Show that this equation has the solution
+$$\psi(x)=N\exp\bigg[-\frac{(x-x_0)^2}{4(\Delta x)^2}+i\frac{p_0x}{\hbar}\bigg]$$
+where $x_0$ and $p_0$ are defined in part (b) above.\\[5pt]
+By expressing $|\beta\rangle$ in the number basis, show that
+$$|\beta(t)\rangle=e^{-i\omega t/2}|\beta e^{-i\omega t}\rangle$$
+As a result, deduce expressions for $x_0(t)$ and $p_0(t)$ and show they represent solutions to the classical equations of motion. How does the width of the coherent state wavepacket evolve with time?
+\end{qns}
+\begin{ans}
+\begin{align}
+    \frac{\partial}{\partial\beta}\bigg(e^{-\beta\hat{a}^\dag}\hat{a}e^{\beta\hat{a}^\dag}\bigg)&=-\hat{a}^\dag e^{-\beta\hat{a}^\dag}\hat{a}e^{\beta\hat{a}^\dag}+\hat{a}^\dag e^{-\beta\hat{a}^\dag}\hat{a}e^{\beta\hat{a}^\dag}\nonumber\\&=e^{-\beta\hat{a}^\dag}[\hat{a}^\dag,\hat{a}]e^{\beta\hat{a}^\dag}\nonumber\\&=1\nonumber
+\end{align}
+Integrating with respect to $\beta$:
+$$e^{-\beta\hat{a}^\dag}\hat{a}e^{\beta\hat{a}^\dag}=\beta+C$$
+When $\beta=0$, the LHS is $\hat{a}$, so $c=\hat{a}$. Consider
+\begin{align}
+    e^{-\beta\hat{a}^\dag}\hat{a}|\beta\rangle&=e^{-\beta\hat{a}^\dag}\hat{a}e^{\beta\hat{a}^\dag}N|0\rangle\nonumber\\&=(\beta+\hat{a})N|0\rangle\nonumber\\&=\beta N|0\rangle\nonumber\\e^{\beta\hat{a}^\dag}e^{-\beta\hat{a}^\dag}\hat{a}|\beta\rangle&=\beta Ne^{\beta\hat{a}^\dag}|0\rangle\nonumber\\\hat{a}|\beta\rangle&=\beta|\beta\rangle\nonumber
+\end{align}
+Hence, $|\beta\rangle$ is a coherent state. Check the normalization:
+$$1=\langle\beta|\beta\rangle=\langle 0|Ne^{\beta^*\hat{a}}|\beta\rangle=N\langle 0|\sum_{n=0}^\infty\frac{(\beta^*\hat{a})^n}{n!}|\beta\rangle=Ne^{|\beta|^2}\langle 0|\beta\rangle=N^2e^{|\beta|^2}\implies N=e^{-|\beta|^2/2}$$
+where $\langle 0|\beta\rangle=N\langle 0|e^{\beta\hat{a}^\dag}|0\rangle=N$. We used the matrix exponential series $e^{\beta\hat{a}^\dag}\approx 1+\hat{a}^\dag+0.5(\hat{a}^\dag)^2+\dots$.\\[5pt]
+The displacement operator $\hat{D}(\beta)=e^{\beta\hat{a}^\dag}$, by definition, displace a localized state in the phase space by a magnitude $\alpha$. 
+$$D^\dag(\beta)\hat{a}\hat{D}(\beta)=e^{-\beta\hat{a}^\dag}\hat{a}e^{\beta\hat{a}^\dag}=\beta+\hat{a}$$
+i.e. $e^{\beta\hat{a}^\dag}|\alpha\rangle=|\alpha+\beta\rangle$. It may also act on the vacuum state by displacing it into a coherent state, 
+$$\hat{D}(\beta)|0\rangle=e^{\beta\hat{a}^\dag}|0\rangle\propto|\beta\rangle$$
+We have $\hat{a}|\beta\rangle=\beta|\beta\rangle$. For the harmonic oscillator, the expectation values are
+$$\hat{x}=\sqrt{\frac{\hbar}{2m\omega}}(\hat{a}+\hat{a}^\dag)\implies\langle\hat{x}\rangle=\sqrt{\frac{\hbar}{2m\omega}}(\beta+\beta^*)$$
+$$\hat{p}=-i\sqrt{\frac{\hbar m\omega}{2}}(\hat{a}-\hat{a}^\dag)\implies\langle\hat{p}\rangle=-i\sqrt{\frac{\hbar m\omega}{2}}(\beta-\beta^*)$$
+Also,
+$$\langle\hat{x}^2\rangle=\frac{\hbar}{2m\omega}\langle\beta|\hat{a}^2+\hat{a}\hat{a}^\dag+\hat{a}^\dag\hat{a}+(\hat{a}^\dag)^2|\beta\rangle=\frac{\hbar}{2m\omega}(1+(\beta+\beta^*)^2)$$
+$$\langle\hat{p}^2\rangle=-\frac{\hbar m\omega}{2}\langle\beta|\hat{a}^2-\hat{a}\hat{a}^\dag-\hat{a}^\dag\hat{a}+(\hat{a}^\dag)^2|\beta\rangle=\frac{\hbar m\omega}{2}(1-(\beta-\beta^*)^2)$$
+The uncertainties are
+$$(\Delta x)^2=\langle x^2\rangle-\langle x\rangle^2=\frac{\hbar}{2m\omega}(1+(\beta+\beta^*)^2)-\frac{\hbar}{2m\omega}(\beta+\beta^*)^2=\frac{\hbar}{2m\omega}$$
+$$(\Delta p)^2=\langle p^2\rangle-\langle p\rangle^2=\frac{\hbar m\omega}{2}(1-(\beta+\beta^*)^2)-\frac{\hbar m\omega}{2}(\beta-\beta^*)^2=\frac{\hbar m\omega}{2}$$
+This gives the saturated Heisenberg uncertainty relation:
+$$(\Delta p)^2(\Delta x)^2=\hbar^2/4$$
+The eigenvector $|\beta\rangle$ is represented by $\psi(x)$. The eigenvalue equation
+\begin{align}
+    \hat{a}|\beta\rangle&=\beta|\beta\rangle\nonumber\\
+    \sqrt{\frac{m\omega}{2\hbar}}\bigg(\hat{x}+i\sqrt{\frac{\hbar}{2m\omega}}\sqrt{\frac{2}{\hbar m\omega}}\frac{\hbar}{i}\frac{\partial}{\partial x}\bigg)\psi(x)&=\beta\psi(x)\nonumber\\\sqrt{\frac{m\omega}{2\hbar}}\bigg(\hat{x}+\frac{\hbar}{m\omega}\frac{\partial}{\partial x}\bigg)\psi(x)&=\beta\psi(x)\nonumber
+\end{align}
+Evaluate the eigenvalue equation on $\psi(x)$:
+\begin{align}
+    &N\sqrt{\frac{m\omega}{2\hbar}}\bigg[x\exp\bigg(-\frac{(x-x_0)^2}{4(\Delta x)^2}+\frac{ip_0x}{\hbar}\bigg)+\frac{\hbar}{m\omega}\frac{\partial}{\partial x}\bigg(-\frac{(x-x_0)^2}{4(\Delta x)^2}+\frac{ip_0x}{\hbar}\bigg)\bigg]\nonumber\\&= N\sqrt{\frac{m\omega}{2\hbar}}\bigg[x\exp\bigg(-\frac{(x-x_0)^2}{4(\Delta x)^2}+\frac{ip_0x}{\hbar}\bigg)+\frac{\hbar}{m\omega}\bigg(-\frac{x-x_0}{2(\Delta x)^2}+\frac{ip_0}{\hbar}\bigg)\bigg(-\frac{(x-x_0)^2}{4(\Delta x)^2}+\frac{ip_0x}{\hbar}\bigg)\bigg]\nonumber\\&=\sqrt{\frac{m\omega}{2\hbar}}\psi(x)\bigg[x+\frac{\hbar}{m\omega}\bigg[-\frac{2m\omega}{2\hbar}(x-x_0)+i\frac{p_0}{\hbar}\bigg]\bigg]\nonumber\\&=\sqrt{\frac{m\omega}{2\hbar}}\psi(x)\sqrt{\frac{\hbar}{2m\omega}}(\beta+\beta^*+\beta-\beta^*)=\beta\psi(x)\nonumber
+\end{align}
+where $x_0=\sqrt{\frac{\hbar}{2m\omega}}(\beta+\beta^*)$ and $p_0=-i\sqrt{\frac{\hbar m\omega}{2}}(\beta-\beta^*)$. $\psi(x)$ is indeed a solution.
+\newpage
+Since the number basis is complete, we may write the coherent state in terms of the number basis
+\begin{eqnarray}
+|\beta\rangle&=&e^{-|\beta|^2/2}e^{\beta\hat{a}^\dag}|0\rangle\nonumber\\&=&e^{-|\beta|^2/2}\sum_{n=0}^\infty\frac{(\beta\hat{a}^\dag)^n}{n!}|0\rangle\nonumber\\&=&e^{-|\beta|^2/2}\sum_{n=0}^\infty\frac{(\beta)^n}{n!}\sqrt{n!}|n\rangle\nonumber\\|\beta(t)\rangle&=&e^{-i\omega t/2}e^{-|\beta|^2/2}\sum_{n=0}^\infty\frac{\beta^n}{\sqrt{n!}}e^{-in\omega t}|n\rangle\nonumber\\&=&e^{-i\omega t/2}|e^{-i\omega t}\beta\rangle\nonumber
+\end{eqnarray}
+where $|n(t)\rangle=e^{-iE_nt/\hbar}|n(0)\rangle$, $E_n=\hbar\omega(n+0.5)$. Since $|\beta(t)\rangle$ is a coherent state with eigenvalue $\beta e^{-i\omega t}$ (for the eigenoperator $\hat{a}$), then the expectations may replace $\beta\rightarrow\beta e^{-i\omega t}$, which gives
+$$\langle\hat{x}\rangle=\sqrt{\frac{\hbar}{2m\omega}}2\text{Re}[\beta e^{-i\omega t}],\quad \langle\hat{p}\rangle=-i\sqrt{\frac{m\hbar\omega}{2}}2i\text{Im}[\beta e^{-i\omega t}]$$
+During time evolution, the coherent state form is preserved, but the position centre and momentum follow that of the classical oscillator, i.e. $x_0(t)=\sqrt{\frac{2\hbar}{m\omega}}|\beta|\cos(\phi-\omega t)$, $p_0(t)=\sqrt{2m\hbar\omega}|\beta|\sin(\phi-\omega t)$, which is obtained by writing $\beta=|\beta|e^{i\phi}$. The width of the coherent state wavepacket $\Delta x$ remains time independent.
+\end{ans}
+\subsection*{Addition of angular momenta}
+\begin{qns}[Addition of angular momenta]
+Consider the addition of two angular momenta, $\ell_1= 2$ and $\ell_2 = 1$. By drawing a diagram similar to that of Figure 9 of Handout VI, tabulate the possible values of the corresponding quantum numbers $m_1$, $m_2$ and $M = m_1 + m_2$ (relating to $\hat{L}_z$), and show that the values of M correspond to the expected values $L = 3, 2, 1$ of the total angular momentum quantum number L.\\[5pt]
+Repeat for the case $\ell_1=3$, $\ell_2 = 1$.\\[5pt]
+(\dag) For the case $\ell_1=2$ and $\ell_2 = 1$, the state $|L, M\rangle = |3, 3\rangle$ can be written down straightforwardly as $|\ell_1, m_1\rangle\otimes|\ell_2, m_2\rangle = |2, 2\rangle\otimes|1, 1\rangle$. Use ladder operators to construct the state $|L, M\rangle = |3, 2\rangle$ as a linear combination of the product states $|\ell_1, m_1\rangle\otimes|\ell_2, m_2\rangle$, and then orthogonality to construct the state $|L, M\rangle= |2, 2\rangle$.\\[5pt]
+[The angular momentum ladder operators $\hat{L}_\pm$ act as
+$\hat{L}_\pm|L,m_L\rangle=\hbar\sqrt{L(L+1)-m_L(m_L\pm1)}|L,m_L\pm1\rangle$.]\\[5pt]
+Verify that the states obtained in (\dag) are the same as would be written down using the tables of Clebsch-Gordan coefficients appended to this examples sheet (see the table labelled $2\otimes 1$).\\[5pt]
+Using the $2\otimes1$ table, write down the state $|L, M\rangle = |1, −1\rangle$ as a linear combination of the $|\ell_1, m_1\rangle\otimes|\ell_2,m_2\rangle$ states.\\[5pt]
+Show that the scalar product $\boldsymbol{\hat{L}_1}\cdot\boldsymbol{\hat{L}_2}$ of two angular momentum operators can be expressed as
+$$\boldsymbol{\hat{L}_1}\cdot\boldsymbol{\hat{L}_2}=\frac{1}{2}(\hat{L}_1)_+(\hat{L}_2)_-+\frac{1}{2}(\hat{L}_1)_-(\hat{L}_2)_++(\hat{L}_1)_z(\hat{L}_2)_z$$
+where $(\hat{L}_{1,2})_\pm=(\hat{L})_{1,2})_x\pm i(\hat{L}_{1,2})_y$ are ladder operators. By operating directly with
+$(\boldsymbol{\hat{L}_1}+\boldsymbol{\hat{L}_2})^2$ and $(\hat{L}_1)_z+(\hat{L}_2)_z$, verify that the linear combination of product states written down in (\dag) does indeed have total angular momentum quantum numbers $L = 1$ and $M = −1$.\\[5pt]
+Convince yourself that each table of Clebsch-Gordan coefficients corresponds to a unitary (in fact, orthogonal) matrix. For the cases $j_1\otimes j_2=(1/2)\otimes(1/2)$, $1\otimes 1$, $(3/2) \otimes(3/2)$ and $2\otimes2$ (for which $j_1 = j_2$), what is the symmetry of the total angular momentum eigenstates $|j, m_j\rangle$ for each possible value of $j$ under interchange of the labels 1 and 2 ?
+\end{qns}
+\newpage
+\begin{ans}
+For the case $\ell_1=2$, $\ell_2=1$:
+\begin{itemize}
+    \item $m_1\in\{-2,-1,0,1,2\}$
+    \item $m_2\in\{-1,0,1\}$
+    \item $M=m_1+m_2\in\{3,2,1,0,-1,-2,-3\}$
+\end{itemize}
+To list down all the states, draw a graph of $m_2$ against $m_1$: discrete points of allowed $m_2$ and $m_1$, and draw diagonal lines to join constant $m$ values, intersecting at $(0,m)$ and $(m,0)$ points. Equivalently, could draw up a table:
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+M  & ($m_1$,$m_2$)                \\
+\hline
+3  & (2,1)                  \\
+\hline
+2  & (2,0), (1,1)           \\
+\hline
+1  & (2,-1), (1,0), (0,1)   \\
+\hline
+0  & (1,-1), (0,0), (-1,1)  \\
+\hline
+-1 & (0,-1), (-1,0), (-2,1) \\
+\hline
+-2 & (-1,-1), (2,0)           \\
+\hline
+-3 & (-2,-1)\\
+\hline
+\end{tabular}
+\end{center}
+These 15 states could be regrouped as states of a given $L=\ell_1+\ell_2$ 
+\begin{itemize}
+    \item $L=3$: $m\in\{3,2,1,0,-1,-2,-3\}$
+    \item $L=2$: $m\in\{2,1,0,-1,-2\}$
+    \item $L=1$: $m\in\{1,0,-1\}$
+\end{itemize}
+In another words,
+$$(\ell_1=2)\otimes(\ell_2=1)=3\oplus2\oplus1\iff (2(2)+1)\times(2(1)+1)=(2(3)+1)+(2(2)+1)+2(1)+1)=15$$
+Similarly, for the case $\ell_1=3$, $\ell_2=1$:
+\begin{itemize}
+    \item $m_1\in\{-3,-2,-1,0,1,2,3\}$
+    \item $m_2\in\{-1,0,1\}$
+    \item $M=m_1+m_2\in\{4,3,2,1,0,-1,-2,-3,-4\}$
+\end{itemize}
+Drawing up the table:
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+M  & ($m_1$,$m_2$)                \\
+\hline
+4  & (3,1)                  \\
+\hline
+3  & (2,1), (3,0)           \\
+\hline
+2  & (2,0), (1,1), (3,-1)  \\
+\hline
+1 & (2,-1), (1,0), (0,1)\\
+\hline
+0  & (1,-1), (0,0), (-1,1)  \\
+\hline
+-1 & (0,-1), (-1,0), (-2,1) \\
+\hline
+-2 & (-1,-1), (2,0), (-3,1)          \\
+\hline
+-3 & (-2,-1), (-3,0)\\
+\hline
+-4 & (-3,-1)\\
+\hline
+\end{tabular}
+\end{center}
+These 21 states could be regrouped as states of a given $L=\ell_1+\ell_2$ 
+\begin{itemize}
+    \item $L=4$: $m\in\{4,3,2,1,0,-1,-2,-3,-4\}$
+    \item $L=3$: $m\in\{3,2,1,0,-1,-2,-3\}$
+    \item $L=2$: $m\in\{2,1,0,-1,-2\}$
+\end{itemize}
+In another words,
+$$(\ell_1=3)\otimes(\ell_2=1)=4\oplus3\oplus2\iff (2(3)+1)\times(2(1)+1)=(2(4)+1)+(2(3)+1)+2(2)+1)=21$$
+\newpage
+For the case $\ell_1=2$, $\ell_2=1$, we have $|L,M\rangle=|3,3\rangle=|2,2\rangle\otimes|1,1\rangle$. Invoke on LHS and RHS:
+$$\hat{L}_-|\ell,m\rangle=\sqrt{\ell(\ell+1)-m(m-1)}\hbar|\ell,m-1\rangle\implies\sqrt{6}\hbar|3,2\rangle=\sqrt{2}\hbar|2,2\rangle\otimes|1,0\rangle+\sqrt{4}\hbar|2,1\rangle\otimes|1,1\rangle$$
+Since $\langle 2,2|3,2\rangle=0$, we have
+$$|2,2\rangle=\sqrt{\frac{2}{3}}|2,2\rangle\otimes|1,0\rangle-\frac{1}{\sqrt{3}}|2,1\rangle\otimes|1,1\rangle$$
+To find $|3,2\rangle$ and $|2,2\rangle$, we use the Clebsch-Gordon table. The coefficients are the overlap $\langle\ell_1,m_1;\ell_2,m_2|J,M\rangle$ which gives as desired:
+$$\langle 2,2;1,0|3,2\rangle=\frac{1}{\sqrt{3}},\quad\langle 2,1;1,1|3,2\rangle=\sqrt{\frac{2}{3}},\quad\langle 2,2;1,0|,2,2\rangle=\sqrt{\frac{2}{3}},\quad\langle 2,1;1,1|2,2\rangle=-\frac{1}{\sqrt{3}}$$
+For the state $|1,-1\rangle$, we similarly find
+\begin{equation}
+|1,-1\rangle=\frac{1}{\sqrt{10}}|2,0\rangle|1,-1\rangle-\sqrt{\frac{3}{10}}|2,-1\rangle|1,0\rangle+\sqrt{\frac{3}{5}}|2,-2\rangle|1,1\rangle\label{state}
+\end{equation}
+Write $\hat{L}_x=\frac{1}{2}(\hat{L}_++\hat{L}_-)$, $\hat{L}_y=\frac{1}{2i}(\hat{L}_+-\hat{L}_-)$, then
+\begin{align}
+    \boldsymbol{\hat{L}_1}\cdot\boldsymbol{\hat{L}_2}&=(\hat{L}_1)_x(\hat{L}_2)_x+(\hat{L}_1)_y(\hat{L}_2)_y+(\hat{L}_1)_z(\hat{L}_2)_z\nonumber\\&=\frac{1}{4}[(\hat{L}_1)_++(\hat{L}_1)_-][(\hat{L}_2)_++(\hat{L}_2)_-]-\frac{1}{4}[(\hat{L}_1)_+-(\hat{L}_1)_-][(\hat{L}_2)_+-(\hat{L}_2)_-]+(\hat{L}_1)_z(\hat{L}_2)_z\nonumber\\&=\frac{1}{2}(\hat{L}_1)_+(\hat{L}_2)_-+\frac{1}{2}(\hat{L}_1)_-(\hat{L}_2)++(\hat{L}_1)_z(\hat{L}_2)_z\nonumber
+\end{align}
+Consider
+$$(\boldsymbol{\hat{L}_1}+\boldsymbol{\hat{L}_2})^2=\hat{L}_1^2+\hat{L}_2^2+(\hat{L}_1)_+(\hat{L}_2)_-+(\hat{L}_1)_-(\hat{L}_2)_++2(\hat{L}_1)_z(\hat{L}_2)_z$$
+For the state in Eqn.~\ref{state}, we have
+$$\hat{L}_i^2|1,-1\rangle=\ell_i(\ell_i+1)\hbar^2|1,-1\rangle\quad\implies \hat{L}_1^2|1,-1\rangle=6\hbar^2|1,-1\rangle,\quad\hat{L}_2^2|1,-1\rangle=2\hbar^2|1,-1\rangle$$
+and 
+$$(\hat{L}_1)_z(\hat{L}_2)_z|\ell_1,m_1\rangle|\ell_2,m_2\rangle=m_1m_2\hbar^2|\ell_1,m_1\rangle|\ell_2,m_2\rangle\quad\implies 2(\hat{L}_1)_z(\hat{L}_2)_z|1,-1\rangle=-4\sqrt{\frac{3}{5}}\hbar^2|2,-2\rangle|1,+1\rangle$$
+For the individual terms in $|1,-1\rangle$, the actions are
+$$(\hat{L}_1)_+(\hat{L}_2)_-|2,-1\rangle|1,0\rangle=\sqrt{12}\hbar^2|2,0\rangle|1,-1\rangle,\quad(\hat{L}_1)_-(\hat{L}_2)_+|2,-1\rangle|1,0\rangle=2\sqrt{2}\hbar^2|2,-1\rangle|1,1\rangle$$
+$$(\hat{L}_1)_-(\hat{L}_2)_+|2,0\rangle|1,-1\rangle=\sqrt{12}\hbar^2|2,-1\rangle|1,0\rangle,\quad(\hat{L}_1)_+(\hat{L}_2)_-|2,-2\rangle|1,+1\rangle=2\sqrt{2}\hbar^2|2,-1\rangle|1,0\rangle$$
+Combining these terms, we have
+\begin{eqnarray}
+&&((\hat{L}_1)_+(\hat{L}_2)_-+(\hat{L}_1)_-(\hat{L}_2)_++2(\hat{L}_1)_z(\hat{L}_2)_z)|1,-1\rangle\nonumber\\&=&\hbar^2|2,-1\rangle|1,0\rangle\bigg(2\sqrt{\frac{6}{5}}+\sqrt{\frac{6}{5}}\bigg)+|2,0\rangle|1,-1\rangle\bigg(-\sqrt{\frac{3}{10}}\sqrt{12}\hbar^2\bigg)-\sqrt{\frac{3}{10}}\sqrt{8}\hbar^2|2,-2\rangle|1,1\rangle\nonumber\\&=&\frac{1}{\sqrt{10}}|2,0\rangle|1,-1\rangle(-6\hbar^2)-\sqrt{\frac{3}{10}}|2,-1\rangle|1,0\rangle\bigg(-\sqrt{\frac{10}{3}}\sqrt{\frac{6}{5}}3\bigg)\hbar^2+\sqrt{\frac{3}{5}}|2,-2\rangle|1,1\rangle\bigg(-\sqrt{\frac{5}{3}}\sqrt{\frac{3}{10}}\sqrt{8}\bigg)\hbar^2\nonumber\\&=&-6\hbar^2|1,-1\rangle\nonumber
+\end{eqnarray}
+Finally,
+$$L(L+1)\hbar^2|1,-1\rangle=(\boldsymbol{\hat{L}_1}+\boldsymbol{\hat{L}_2})^2|1,-1\rangle=(8-6)\hbar^2|1,-1\rangle=2\hbar^2|1,-1\rangle\implies L=1$$
+Similarly, acting $((\hat{L}_1)_z+(\hat{L}_2)_z)$ on the individual terms in Eqn.~\ref{state}:
+$$M\hbar|1,-1\rangle=((\hat{L}_1)_z+(\hat{L}_2)_z)|1,-1\rangle=-\frac{1}{\sqrt{10}}\hbar|2,0\rangle\otimes|1,-1\rangle-\sqrt{\frac{3}{10}}\hbar|2,-1\rangle|1,0\rangle-\sqrt{\frac{3}{5}}\hbar|2,-2\rangle|1,1\rangle=-\hbar|1,-1\rangle$$
+giving $M=-1$.
+\newpage
+Finally, the table of Clebsch-Gordan coefficients have to be unitary since we are converting between complete bases. As the phase of each ket is arbitrary, by convention, we have chosen the coefficients to be real. A real unitary matrix is orthogonal.\\[5pt]
+For $j_1\otimes j_2=0.5\otimes0.5$, there are $2\times 2$ states. To determine symmetry, inspect the Clebsch-Gordon coefficients (anti-symmetric if under particle exchange, incur an overall negative sign).
+\begin{center}
+    \begin{tabular}{|c|c|}
+    \hline
+        Symmetric & $|1,1\rangle$, $|1,0\rangle$, $|1,-1\rangle$  \\
+        \hline
+        Anti-symmetric & $|0,0\rangle$ \\
+        \hline
+    \end{tabular}
+\end{center}
+For $j_1\otimes j_2=1\otimes1$, there are $3\times 3$ states. To determine symmetry, inspect the Clebsch-Gordon coefficients (anti-symmetric if under particle exchange, incur an overall negative sign).
+\begin{center}
+    \begin{tabular}{|c|c|}
+    \hline
+    Symmetric & $|2,2\rangle$, $|2,1\rangle$, $|2,0\rangle$, $|2,-1\rangle$, $|2,-2\rangle$\\
+    \hline
+        Anti-symmetric & $|1,1\rangle$, $|1,0\rangle$, $|1,-1\rangle$  \\
+        \hline
+        Symmetric & $|0,0\rangle$ \\
+        \hline
+    \end{tabular}
+\end{center}
+For $j_1\otimes j_2=3/2\otimes3/2$, there are $4\times 4$ states. To determine symmetry, inspect the Clebsch-Gordon coefficients (anti-symmetric if under particle exchange, incur an overall negative sign).
+\begin{center}
+    \begin{tabular}{|c|c|}
+    \hline
+    Symmetric & $|3,3\rangle$, $|3,2\rangle$, $|3,1\rangle$, $|3,0\rangle$, $|3,-1\rangle$, $|3,-2\rangle$\\
+    \hline
+    Anti-symmetric & $|2,2\rangle$, $|2,1\rangle$, $|2,0\rangle$, $|2,-1\rangle$, $|2,-2\rangle$\\
+    \hline
+        Symmetric & $|1,1\rangle$, $|1,0\rangle$, $|1,-1\rangle$  \\
+        \hline
+        Anti-symmetric & $|0,0\rangle$ \\
+        \hline
+    \end{tabular}
+\end{center}
+For $j_1\otimes j_2=2\otimes2$, there are $5\times 5$ states. To determine symmetry, inspect the Clebsch-Gordon coefficients (anti-symmetric if under particle exchange, incur an overall negative sign).
+\begin{center}
+    \begin{tabular}{|c|c|}
+    \hline
+    Symmetric & $|4,4\rangle$, $|4,3\rangle$, $|4,2\rangle$, $|4,1\rangle$, $|4,0\rangle$, $|4,-1\rangle$, $|4,-2\rangle$, $|4,-3\rangle$, $|4,-4\rangle$\\
+    \hline
+    Anti-symmetric & $|3,3\rangle$, $|3,2\rangle$, $|3,1\rangle$, $|3,0\rangle$, $|3,-1\rangle$, $|3,-2\rangle$\\
+    \hline
+    Symmetric & $|2,2\rangle$, $|2,1\rangle$, $|2,0\rangle$, $|2,-1\rangle$, $|2,-2\rangle$\\
+    \hline
+        Anti-symmetric & $|1,1\rangle$, $|1,0\rangle$, $|1,-1\rangle$  \\
+        \hline
+        Symmetric & $|0,0\rangle$ \\
+        \hline
+    \end{tabular}
+\end{center}
+The pattern is: eigenstates of the largest possible $j$ are always symmetric under exchange and it alternates between anti-symmetric and symmetric as $j$ decreases by discrete units of one. The overall phase of the state given a $j_1,j_2,J$ is $(-1)^{J-j_1-j_2}$.
+\end{ans}
+\newpage
+\subsection*{Wigner-Eckart theorem}
+\begin{qns}[Rotational symmetry]
+Write down the Wigner-Eckart theorem for matrix elements of the form $\langle\alpha_1j_1m_1|\hat{V}_m|\alpha_2j_2m_2\rangle$, where the operators $\hat{V}_m$ ($m =\pm1, 0$) are the spherical components of a vector operator $\boldsymbol{\hat{V}}$, and the $\alpha_i$ represent any other quantum numbers needed to uniquely identify the total angular momentum eigenstates $|\alpha_ij_im_i\rangle$ of the system.
+\begin{enumerate}[label=(\alph*)]
+\item For the case $j_1 = 1$, $j_2 = 0$, identify the matrix elements $\langle \alpha_1j_1m_1|\hat{V}_m|\alpha_2j_2m_2\rangle$ which can be non-zero, and show that they are all equal. Hence show that the Cartesian components ($\hat{V}_x$, $\hat{V}_y$, $\hat{V}_z$) of $\boldsymbol{\hat{V}}$ have matrix elements of the form
+$$\langle\alpha_110|(\hat{V}_x,\hat{V}_y,\hat{V}_z)|\alpha_200\rangle=A(001)$$
+$$\langle\alpha_11,\pm1|(\hat{V}_x,\hat{V}_y,\hat{V}_z)|\alpha_200\rangle=\frac{A}{\sqrt{2}}(\mp1,i,0)$$
+where $A$ is a constant.
+\item Verify this result explicitly for the matrix elements of the position operator $\hat{r}=(\hat{x},\hat{y},\hat{z})$ for a system such as the hydrogen atom for which the $j = 0$ and $j = 1$ angular momentum eigenstates $|\alpha jm\rangle$ are spatial wavefunctions of the form
+$$|\alpha00\rangle = R_{\alpha 0}(r)Y_{00}(\theta, \phi),\quad |\alpha1m\rangle = R_{\alpha1}(r)Y_{1m}(\theta,\phi)$$
+[The $\ell=0$ and $\ell=1$ spherical harmonics $Y_{\ell m}(\theta, \phi)$ are
+$$Y_{00}=\sqrt{\frac{1}{4\pi}},\quad Y_{10}=\sqrt{\frac{3}{4\pi}}\cos\theta,\quad Y_{1,\pm1}=\mp\sqrt{\frac{3}{8\pi}}\sin\theta e^{\pm i\phi}$$
+\item What is the equivalent result to part (a) for the case $j_1 = j_2 = 0$?
+\end{enumerate}
+\end{qns}
+\begin{ans}
+Wigner-Eckart theorem states that
+$$\langle\alpha_1,j_1,m_1|\hat{V}_m|\alpha_2,j_2,m_2\rangle=\langle\alpha_1,j_1||\hat{V}_m||\alpha_2,j_2\rangle\langle 1,m;j_2,m_2|j_1,m_1\rangle$$
+where $\hat{V}_m$ are spherical components of a vector operator $\hat{V}$, $\alpha_i$ are any other quantum numbers.
+\begin{enumerate}[label=(\alph*)]
+\item For $j_1=1$, $j_2=0$, we necessarily have $m_2=0$ and $m_1=1,0,-1$, hence $m=m_1+m_2=1,0,-1$. By Wigner-Eckart theorem:
+$$\langle\alpha_1,1,m|\hat{V}_m|\alpha_2,0,0\rangle=\langle\alpha_1,1|\hat{V}_m|\alpha_2,0\rangle\langle1,m;0,0|1,m_1\rangle$$
+but $C_{1,m,0,0}:=\langle1,m;0,0|1,m_1\rangle=1$. Hence, $\langle\alpha_1,1,m_1|\hat{V}_m|\alpha_2,0,0\rangle=\langle\alpha_1,1|\hat{V}_m|\alpha_2,0\rangle$. Let $A=\langle\alpha_1,1,|\hat{V}_{+1}|\alpha_2,0,0\rangle=\langle\alpha_1,1,0|\hat{V}_0|\alpha_2,0,0\rangle=\langle\alpha_1,1,-1|\hat{V}_{-1}|\alpha_2,0,0\rangle$. To convert from spherical components to Cartesian components:
+$$\hat{V}_x=\frac{1}{\sqrt{2}}(\hat{V}_{-1}-\hat{V}_{+1}),\quad\hat{V}_y=\frac{i}{\sqrt{2}}(\hat{V}_{-1}+\hat{V}_{+1}),\quad\hat{V}_z=\hat{V}_0$$
+Hence, we have
+$$\langle\alpha_1,1,0|(\hat{V}_x,\hat{V}_y,\hat{V}_z)|\alpha_2,0,0\rangle=(0,0,\langle\alpha_1,1,0|\hat{V}_0|\alpha_2,0,0\rangle)=A(0,0,1)$$
+$$\langle\alpha_1,1,\pm1|(\hat{V}_x,\hat{V}_y,\hat{V}_z)|\alpha_2,0,0\rangle=(0,0,\langle\alpha_1,1,0|\hat{V}_0|\alpha_2,0,0\rangle)=\frac{1}{\sqrt{2}}A(\mp1,i,0)$$
+\item For the Hydrogen atom, $\mathbf{\hat{V}}=(\sin\theta\cos\phi,\sin\theta\sin\phi,\cos\theta)$. For $\langle\alpha_1,1,0|\mathbf{\hat{V}}|\alpha_2,0,0\rangle$:
+$$\hat{V}_x:~\int_{\mathcal{S}^2}R_{\alpha_1,1}(r)Y_{1,0}(\theta,\phi)\sin\theta\cos\phi R_{\alpha,0}(r)Y_{00}(\theta,\phi)d\theta d\phi=\frac{R_{\alpha_1,1}R_{\alpha_2,0}\sqrt{3}}{4\pi}\int_0^\pi\cos\theta\sin\theta d\theta\int_0^{2\pi}\cos\phi d\phi=0$$
+$$\hat{V}_y:~\int_{\mathcal{S}^2}R_{\alpha_1,1}(r)Y_{1,0}(\theta,\phi)\sin\theta\sin\phi R_{\alpha,0}(r)Y_{00}(\theta,\phi)d\theta d\phi=\frac{R_{\alpha_1,1}R_{\alpha_2,0}\sqrt{3}}{4\pi}\int_0^\pi\cos\theta\sin\theta d\theta\int_0^{2\pi}\sin\phi d\phi=0$$
+$$\hat{V}_z:~\int_{\mathcal{S}^2}R_{\alpha_1,1}(r)Y_{1,0}(\theta,\phi)\cos\theta R_{\alpha,0}(r)Y_{00}(\theta,\phi)d\theta d\phi=\frac{R_{\alpha_1,1}R_{\alpha_2,0}\sqrt{3}}{4\pi}\int_0^\pi\cos^2\theta\sin\theta d\theta\int_0^{2\pi}d\phi$$
+Let the last result be $=\frac{R_{\alpha_1,0}R_{\alpha_2,1}}{\sqrt{3}}:=A$. For $\langle\alpha_1,1,\pm1|\mathbf{\hat{V}}|\alpha_2,0,0\rangle$, we decompose $\cos\phi$ and $\sin\phi$ into exponentials to evaluate:
+$$\hat{V}_x:~\int_{\mathcal{S}^2}R_{\alpha_1,1}(r)Y_{1,\pm1}(\theta,\phi)\sin\theta\cos\phi R_{\alpha,0}(r)Y_{00}(\theta,\phi)d\theta d\phi=\frac{R_{\alpha_1,1}R_{\alpha_2,0}\sqrt{3/2}}{4\pi}\int_0^\pi\sin^2\theta d\theta\int_0^{2\pi}\cos\phi e^{\mp i\phi}d\phi$$
+$$\hat{V}_y:~\int_{\mathcal{S}^2}R_{\alpha_1,1}(r)Y_{1,\pm1}(\theta,\phi)\sin\theta\sin\phi R_{\alpha,0}(r)Y_{00}(\theta,\phi)d\theta d\phi=\frac{R_{\alpha_1,1}R_{\alpha_2,0}\sqrt{3/2}}{4\pi}\int_0^\pi\sin^2\theta d\theta\int_0^{2\pi}\sin\phi e^{\mp i\phi}d\phi$$
+$$\hat{V}_z:~\int_{\mathcal{S}^2}R_{\alpha_1,1}(r)Y_{1,\pm1}(\theta,\phi)\cos\theta R_{\alpha,0}(r)Y_{00}(\theta,\phi)d\theta d\phi=\frac{R_{\alpha_1,1}R_{\alpha_2,0}\sqrt{3/2}}{4\pi}\int_0^\pi\cos\theta\sin\theta d\theta\int_0^{2\pi}e^{\mp i\phi}d\phi=0$$
+which gives $\mp A/\sqrt{2},iA/\sqrt{2}$ and 0 respectively, which agrees with our previous result.
+\item By Wigner-Eckart theorem, $\langle\alpha_1,1,0|\hat{V}_m|\alpha_2,0,0\rangle=\langle\alpha_1,0|\hat{V}_m|\alpha_2,0\rangle\langle1,0;0,0|1,0\rangle=\langle\alpha_1,0|\hat{V}_m|\alpha_2,0\rangle\times 0$.
+\end{enumerate}
+\end{ans}
+\begin{qns}[Linear Stark effect]
+A hydrogen atom is placed in an external electric field of strength $\mathcal{E}$, resulting in shifts in the atomic energy levels which are large relative to atomic fine structure. The effect of the electric field on the level with principal quantum number $n = 3$ is to be analysed using first-order degenerate perturbation theory, with a perturbation $\hat{H}_0=e\mathcal{E}z$, and working in the basis of states $|n\ell m_\ell\rangle$ ordered as
+$$|300\rangle,~|310\rangle,~|320\rangle,~ |311\rangle,~|321\rangle,~|31, −1\rangle, |32, −1\rangle,~|322\rangle,~|32, −2\rangle$$
+The reduced matrix elements for the electron position operator $\boldsymbol{\hat{r}}$ for $n = 3$ are $\langle 3s||\boldsymbol{\hat{r}}||3p\rangle= 9\sqrt{2}a_0$ and $\langle 3d||\boldsymbol{\hat{r}}||3p\rangle= -9/\sqrt{2}a_0$, where $a_0$ is the Bohr radius.
+\begin{enumerate}[label=(\alph*)]
+\item Show that the matrix representation of $\hat{H}'$ in the basis above is block diagonal, with sub-matrices of the form
+$$H_0'=\begin{pmatrix}0&a&0\\a&0&b\\0&b&0\\\end{pmatrix},\quad H'_{+1}=\begin{pmatrix}0&c\\c&0\\\end{pmatrix},\quad H'_{-1}=\begin{pmatrix}0&c\\c&0\\\end{pmatrix}$$
+where $a$, $b$, $c$ are constants such that $a=\sqrt{2}b=\sqrt{8/3}c$, and $c=-(9/2)ea_0\mathcal{E}$.
+\item  Show that the electric field splits the $n = 3$ level into five equally spaced levels with energy separation $(9/2)ea_0\mathcal{E}$. State the values of the quantum number $m_\ell$ associated with each of these five levels.
+\item Show that, in the electric field, the $n = 3$ level of highest energy corresponds to the zeroth-order eigenstate
+$$|\psi\rangle=\sqrt{\frac{1}{3}}|300\rangle-\sqrt{\frac{1}{2}}|310\rangle+\sqrt{\frac{1}{6}}|320\rangle$$
+and (optionally) determine the zeroth-order eigenstates for the other four levels.
+\end{enumerate}
+\end{qns}
+\begin{ans}\leavevmode
+\begin{enumerate}[label=(\alph*)]
+\item By Wigner-Eckart theorem:
+$$\langle 3,\ell',m_\ell'|\hat{H}'|3,\ell,m_\ell\rangle=e\mathcal{E}\langle 3,\ell',m_\ell'|\mathbf{\hat{z}}|3,\ell,m_\ell\rangle=e\mathcal{E}\langle 3,\ell'||\mathbf{\hat{r}}||3,\ell\rangle\langle 1,0;\ell,m_\ell|\ell',m_\ell'\rangle$$
+By the selection rule, $\langle n\ell m|H'|n'\ell'm'\rangle\neq 0$ if $\Delta m=0\implies m_\ell'=m_\ell$ and $\Delta\ell=\pm1\implies\ell'=\ell\pm1$. The matrices $H_0'$, $H'_{+1}$ and $H'_{-1}$ are obtained by considering respectively: 
+\begin{itemize}
+    \item $|3,0,0\rangle\leftrightarrow|3,1,0\rangle$ and $|3,1,0\rangle\leftrightarrow|3,2,0\rangle$. The former gives 
+    $$\langle 3,1,0|\hat{H}'|3,0,0\rangle=e\mathcal{E}\langle 3,1||\mathbf{\hat{r}}||3,0\rangle\langle1;0;0,0|1,0\rangle=\langle 3p||\mathbf{\hat{r}}||3s\rangle\frac{1}{\sqrt{3}}=-9\sqrt{\frac{2}{3}}ea_0\mathcal{E}:=a$$
+    The latter gives 
+    $$\langle 3,2,m_\ell|\hat{H}'|3,1,m_\ell\rangle=e\mathcal{E}\langle 3,1||\mathbf{\hat{r}}||3,2\rangle\langle1;0;1,m_\ell|2,m_\ell\rangle=\langle 3p||\mathbf{\hat{r}}||3d\rangle\xi=-\frac{9}{\sqrt{2}}ea_0\mathcal{E}$$
+    where $\xi=1/\sqrt{2}$ if $m_\ell=1$ and $\xi=\sqrt{2/3}$ if $m_\ell=0$, giving $-\frac{9}{2}a_0e\mathcal{E}:=c$ and $-\frac{9}{\sqrt{3}}a_0e\mathcal{E}:=b$. Here, $m_\ell=m_\ell'0$, hence the matrix is
+    $$H_0'=\begin{pmatrix}0&a&0\\a&0&b\\0&b&0\\\end{pmatrix}$$
+    \item $|3,1,1\rangle\leftrightarrow|3,2,1\rangle$. From earlier, the matrix is
+    $$H_1'=\begin{pmatrix}0&c\\c&0\\\end{pmatrix}$$
+    \item $|3,1,-1\rangle\leftrightarrow|3,2,-1\rangle$. From earlier, the matrix is $H_{-1}'=H_1'$.
+\end{itemize}
+\item In degenerate perturbation theory, the first order energy corrections are the eigenvalues of $H'_m$. For $m=0$ and $m=\pm1$ respectively:
+$$0=\det\begin{pmatrix}-\lambda&a&0\\a&-\lambda & b\\0&b&-\lambda\\\end{pmatrix}=-\lambda(\lambda^2-b^2)-a(-a\lambda)=-\lambda^3+b^2\lambda+a^2\lambda\implies\lambda=0,~\pm\sqrt{a^2+b^2}$$
+$$0=\det\begin{pmatrix}-\lambda&c\\c&0\\\end{pmatrix}=\lambda^2-c^2\implies\lambda=\pm c$$
+The first order energy shifts are thus $\Delta E=-\sqrt{a^2+b^2},-|c|,0,|c|,\sqrt{a^2+b^2}$. But, $\sqrt{a^2+b^2}=\sqrt{(9\sqrt{2/3}ea_0\mathcal{E})^2+(9ea_0\mathcal{E}/\sqrt{3})^2}=9ea_0\mathcal{E}$ and $c=-9ea_0\mathcal{E}/2$. Hence, the five new energy levels are equally spaced with spacing $9a_0\mathcal{E}/2$.
+\item In degenerate perturbation theory, the perturbation has eigenvectors that selects a  particular linear combination of the eigenvectors of $H'_m$. The highest energy level corresponds to $m_\ell=m_\ell'=0$. We thus need to find the eigenvectors of $H_0'$, $\mathbf{v}$. 
+$$\boldsymbol{0}=(H_0'-\lambda I)\mathbf{v}=\begin{pmatrix}-\lambda & a=2\sqrt{6}c/3&0\\a=2\sqrt{6}c/3&-\lambda & b=2\sqrt{3}c/3\\0&b=2\sqrt{3}c/3&-\lambda\\\end{pmatrix}\mathbf{v}$$
+The highest energy level has energy $\lambda=-2c$, and thus the eigenvector is $\mathbf{v}\propto(1/\sqrt{3},1/\sqrt{2},1/\sqrt{6})$, i.e. this level is a superposition of the unperturbed $m=0$ states
+$$|\psi_{\Delta E=9ea_0\mathcal{E}}\rangle=\frac{1}{\sqrt{3}}|3,0,0\rangle-\frac{1}{\sqrt{2}}|3,1,0\rangle+\frac{1}{\sqrt{6}}|3,2,0\rangle$$
+By symmetry and orthogonality, the lowest energy perturbed level is 
+$$|\psi_{\Delta E=9ea_0\mathcal{E}}\rangle=\frac{1}{\sqrt{3}}|3,0,0\rangle+\frac{1}{\sqrt{2}}|3,1,0\rangle+\frac{1}{\sqrt{6}}|3,2,0\rangle$$
+For the eigenvalue $\lambda=0$, the eigenvector is $\mathbf{v}\propto(1/\sqrt{3},0,-\sqrt{2/3})$, i.e.
+$$|\psi_{\Delta E=0}\rangle=\frac{1}{\sqrt{3}}|3,0,0\rangle-\sqrt{\frac{2}{3}}|3,2,0\rangle$$
+For the $m=\pm1$ states, we diagonalize $H'_{\pm1}$. For the eigenvalues $\pm c$, we get the eigenvectors $\frac{1}{\sqrt{2}}(1,\pm1)$. The corresponding eigenstates are
+$$|\psi_{\Delta E=9ea_0\mathcal{E}/2}\rangle=\frac{1}{\sqrt{2}}|3,1,\pm1\rangle-\frac{1}{\sqrt{2}}|3,2,\pm1\rangle,\quad |\psi_{\Delta E=-9ea_0\mathcal{E}/2}\rangle=\frac{1}{\sqrt{2}}|3,1,\pm1\rangle+\frac{1}{\sqrt{2}}|3,2,\pm1\rangle$$
+The zero energy level further contains $|3,2,2\rangle$ and $|3,2,-2\rangle$ where the $m=2$ levels do not shift (break degeneracy), a consequence of the selection rule.
+\end{enumerate}
+\end{ans}
+\subsection*{Aharonov-Bohm effect}
+\begin{qns}[Aharonov-Bohm effect]
+A ring-shaped semiconductor device is fabricated from a high mobility two-dimensional electron gas, Fig. 1, and cooled in a cryostat to 0.3 K. On the figure, the lighter grey is the conducting region.\\[5pt]
+A voltage is applied across the ring (between points at the bottom and the top of the image) and the current flow is measured as a function of a magnetic field applied perpendicular to the plane of the ring.\\[5pt]
+Explain why the oscillations in conductance occur, account for their periodicity, and obtain a value for the average diameter of the ring. (1 Tesla = $10^4$ Gauss.)
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{AharonovBohm.JPG}
+\end{figure}
+\end{qns}
+\begin{ans}
+The ring allows two paths for the electrons to transport across the region. The conductance is proportional to the current ($G=I/V$, where $V$ is the gate voltage), which in turn proportional to the interference intensity of the electrons.\\[5pt]
+The presence of the magnetic field results in a gauge potential in the region where the electrons tunnel, imparting an additional relative phase factor $\exp(ie\Phi/\hbar)$ to the wavefunctions, before they superpose. The oscillations hence corresponds to the two electron wavefunctions undergoing constructive or destructive interfgerence as the magnetic flux ($\Phi=AB=\pi r^2B$) changes with the field. To find the period, we find the field values that give constructive interference.
+$$\exp(ie\Phi/\hbar)=1\implies\frac{e\Phi}{\hbar}=2\pi n\implies B=\frac{2\hbar n}{er^2},\quad n\in\mathbb{Z}$$
+For one oscillation, the interval is
+$$\Delta B=\frac{2\hbar}{er^2}\implies r=\sqrt{\frac{2\hbar}{e\Delta B}}$$
+From the diagram, the average period is
+$$\Delta B=\frac{(478+523)\times10^{-3}}{31}=3.23\times10^{-3}T$$
+The average diameter of the ring is
+$$2r=2\sqrt{\frac{2(6.626\times10^{-34}/(2\pi))}{(1.6\times10^{-19})(3.23\times10^{-3})}}=1.28\times10^{-6}m$$
+\end{ans}
+\end{document}
